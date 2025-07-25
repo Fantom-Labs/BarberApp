@@ -112,11 +112,7 @@ export function FunctionsMenu({ onClose, className = "" }: FunctionsMenuProps) {
       href: "/dashboard/functions/my-barbershop",
       icon: <FiHome className="h-5 w-5" />,
     },
-    {
-      name: "Novo Agendamento",
-      icon: <FiCalendar className="h-5 w-5" />,
-      onClick: openModal,
-    },
+    // Removido o item 'Novo Agendamento'
     {
       name: "Clientes",
       href: "/dashboard/functions/clients",
