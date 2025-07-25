@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { FiCalendar, FiClock, FiUser, FiPlus, FiChevronDown, FiTrendingUp, FiUsers, FiBarChart2 } from "react-icons/fi";
+import { FiCalendar, FiClock, FiUser, FiPlus, FiChevronDown, FiTrendingUp, FiUsers, FiBarChart2, FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import AppointmentModal from "@/components/AppointmentModal";
 import useAppointmentModal from "@/hooks/useAppointmentModal";
 import { AvailabilityCalendar } from "@/components/AvailabilityCalendar";
@@ -69,6 +69,38 @@ export default function AgendaPage() {
   const [view, setView] = useState<"day" | "week" | "month">("day");
   const [selectedBarber, setSelectedBarber] = useState<string | null>(null);
   const [showFilters, setShowFilters] = useState(false);
+  const [currentMonth, setCurrentMonth] = useState(new Date());
+
+  // Função para obter todos os dias do mês atual
+  const getDaysInMonth = (date: Date) => {
+    const year = date.getFullYear();
+    const month = date.getMonth();
+    const firstDay = new Date(year, month, 1);
+    const lastDay = new Date(year, month + 1, 0);
+    const days = [];
+    for (let d = 1; d <= lastDay.getDate(); d++) {
+      days.push(new Date(year, month, d));
+    }
+    return days;
+  };
+
+  // Função para obter o nome do mês
+  const getMonthName = (date: Date) => {
+    return date.toLocaleDateString('pt-BR', { month: 'long', year: 'numeric' });
+  };
+
+  // Funções para navegar entre meses
+  const goToPrevMonth = () => {
+    setCurrentMonth(prev => new Date(prev.getFullYear(), prev.getMonth() - 1, 1));
+  };
+  const goToNextMonth = () => {
+    setCurrentMonth(prev => new Date(prev.getFullYear(), prev.getMonth() + 1, 1));
+  };
+
+  // Dias do mês atual
+  const daysInMonth = getDaysInMonth(currentMonth);
+  // Descobrir o dia da semana do primeiro dia do mês (0=Domingo)
+  const firstDayOfWeek = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), 1).getDay();
 
   // Dados de exemplo para barbeiros
   const barbers = [
@@ -183,43 +215,49 @@ export default function AgendaPage() {
         ))}
       </div>
 
-      {/* Visualização semanal por profissional */}
+      {/* Visualização mensal por profissional */}
+      <div className="mb-4 flex items-center justify-center gap-2">
+        <button onClick={goToPrevMonth} className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">
+          <FiChevronLeft className="h-5 w-5" />
+        </button>
+        <span className="font-semibold text-lg capitalize">{getMonthName(currentMonth)}</span>
+        <button onClick={goToNextMonth} className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">
+          <FiChevronRight className="h-5 w-5" />
+        </button>
+      </div>
       <div className="overflow-x-auto">
-        <div className="min-w-[700px] grid grid-cols-1 md:grid-cols-7 gap-2">
-          {(() => {
-            // Dias da semana
-            const weekDays = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
-            const today = new Date();
-            const weekStart = new Date(today);
-            weekStart.setDate(today.getDate() - today.getDay());
-            return weekDays.map((day, i) => {
-              const dayDate = new Date(weekStart);
-              dayDate.setDate(weekStart.getDate() + i);
-              return (
-                <div key={day} className="bg-white dark:bg-gray-800 rounded-lg shadow p-2 min-h-[180px] flex flex-col">
-                  <div className="font-semibold text-center mb-2">{day} <span className="text-xs">{dayDate.getDate().toString().padStart(2, '0')}</span></div>
-                  <div className="flex-1 flex flex-col gap-2">
-                    {(selectedBarber ? appointments.filter(a => a.barber === selectedBarber) : appointments)
-                      .filter(a => a.date === dayDate.toISOString().split('T')[0])
-                      .map(a => (
-                        <div
-                          key={a.id}
-                          className={`rounded-md px-2 py-1 text-white text-xs font-medium shadow ${statusColors[getStatus(a)]}`}
-                          title={`${a.client} - ${a.service}`}
-                        >
-                          <div className="flex justify-between items-center">
-                            <span>{a.time}</span>
-                            <span className="capitalize">{getStatus(a)}</span>
-                          </div>
-                          <div>{a.client}</div>
-                          <div className="text-[10px]">{a.service}</div>
+        <div className="min-w-[700px] grid grid-cols-7 gap-2">
+          {/* Preencher os dias vazios antes do primeiro dia do mês */}
+          {Array.from({ length: firstDayOfWeek }).map((_, i) => (
+            <div key={"empty-" + i} />
+          ))}
+          {/* Renderizar todos os dias do mês */}
+          {daysInMonth.map((day, idx) => {
+            const dayStr = day.toISOString().split('T')[0];
+            return (
+              <div key={dayStr} className="bg-white dark:bg-gray-800 rounded-lg shadow p-2 min-h-[120px] flex flex-col">
+                <div className="font-semibold text-center mb-2">{day.getDate()}</div>
+                <div className="flex-1 flex flex-col gap-2">
+                  {(selectedBarber ? appointments.filter(a => a.barber === selectedBarber) : appointments)
+                    .filter(a => a.date === dayStr)
+                    .map(a => (
+                      <div
+                        key={a.id}
+                        className={`rounded-md px-2 py-1 text-white text-xs font-medium shadow ${statusColors[getStatus(a)]}`}
+                        title={`${a.client} - ${a.service}`}
+                      >
+                        <div className="flex justify-between items-center">
+                          <span>{a.time}</span>
+                          <span className="capitalize">{getStatus(a)}</span>
                         </div>
-                      ))}
-                  </div>
+                        <div>{a.client}</div>
+                        <div className="text-[10px]">{a.service}</div>
+                      </div>
+                    ))}
                 </div>
-              );
-            });
-          })()}
+              </div>
+            );
+          })}
         </div>
       </div>
 
