@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { FiBarChart2, FiCalendar, FiDollarSign, FiUsers, FiShoppingBag, FiDownload, FiFilter, FiAward } from "react-icons/fi";
+import { FiBarChart2, FiCalendar, FiDollarSign, FiUsers, FiShoppingBag, FiDownload, FiFilter, FiAward, FiScissors } from "react-icons/fi";
 import AgeDistributionChart from "@/components/AgeDistributionChart";
 import SalesStatisticsCard from "@/components/SalesStatisticsCard";
 
@@ -458,6 +458,15 @@ export default function ReportsPage() {
       case "barbers":
         return (
           <div className="space-y-6">
+            {/* Botão Adicionar Barbeiro */}
+            <div className="flex justify-end">
+              <a
+                href="/dashboard/functions/barbers/new"
+                className="inline-flex items-center px-4 py-2 bg-primary text-white rounded-md shadow hover:bg-primary-dark transition-colors font-medium"
+              >
+                +Adicionar Barbeiro
+              </a>
+            </div>
             {/* Ranking de Barbeiros */}
             <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
               <h3 className="text-lg font-semibold mb-6">Ranking de Barbeiros</h3>
@@ -775,7 +784,7 @@ export default function ReportsPage() {
               : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700"
           }`}
         >
-          <FiAward className="h-6 w-6" />
+          <FiScissors className="h-6 w-6" />
           <span className="font-medium">Barbeiros</span>
         </button>
       </div>
