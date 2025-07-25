@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FiCalendar, FiShoppingBag, FiVideo, FiMenu, FiHome, FiBarChart2, FiSettings } from "react-icons/fi";
+import { FiCalendar, FiShoppingBag, FiVideo, FiMenu, FiHome, FiBarChart2, FiSettings, FiPieChart } from "react-icons/fi";
 import { memo, useCallback } from "react";
 import React from "react";
 
@@ -90,9 +90,9 @@ export const MainNavigation = memo(function MainNavigation({ className = "" }: M
               <NavLink
                 href="/dashboard/functions/reports"
                 active={isActive("/dashboard/functions/reports")}
-                icon={<FiBarChart2 className="h-5 w-5" />}
+                icon={<FiPieChart className="h-5 w-5" />}
               >
-                Relatórios
+                Gestão
               </NavLink>
             </div>
           </div>

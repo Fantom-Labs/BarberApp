@@ -111,11 +111,7 @@ export function FunctionsMenu({ onClose, className = "" }: FunctionsMenuProps) {
       href: "/dashboard/functions/barbers/new",
       icon: <FiScissors className="h-5 w-5" />,
     },
-    {
-      name: "Gestão",
-      href: "/dashboard/functions/management",
-      icon: <FiPieChart className="h-5 w-5" />,
-    },
+    // Removido o item Gestão
     {
       name: "Marketing",
       href: "/dashboard/functions/marketing",

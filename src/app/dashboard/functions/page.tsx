@@ -150,6 +150,13 @@ export default function FunctionsPage() {
       color: "bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400"
     },
     {
+      name: "Relatórios",
+      description: "Visualize dados e estatísticas do seu negócio",
+      href: "/dashboard/functions/reports",
+      icon: <FiBarChart2 className="h-6 w-6" />,
+      color: "bg-cyan-100 dark:bg-cyan-900/30 text-cyan-600 dark:text-cyan-400"
+    },
+    {
       name: "Configurações",
       description: "Personalize as configurações do sistema",
       href: "/dashboard/functions/settings",
