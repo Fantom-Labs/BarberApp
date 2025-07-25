@@ -4,17 +4,7 @@ import React, { useState } from "react";
 import { FiCalendar, FiClock, FiUser, FiPlus, FiChevronDown } from "react-icons/fi";
 import AppointmentModal from "@/components/AppointmentModal";
 import useAppointmentModal from "@/hooks/useAppointmentModal";
-import {
-  CalendarProvider,
-  CalendarDate,
-  CalendarDatePicker,
-  CalendarMonthPicker,
-  CalendarYearPicker,
-  CalendarDatePagination,
-  CalendarHeader,
-  CalendarBody,
-  CalendarItem,
-} from "@/components/ui/calendar";
+import { AvailabilityCalendar } from "@/components/AvailabilityCalendar";
 
 // Forçar renderização dinâmica
 export const dynamic = 'force-dynamic';
@@ -63,15 +53,6 @@ export default function AgendaPage() {
     services,
     barbers: modalBarbers
   } = useAppointmentModal(appointments, handleAppointmentCreated);
-
-  // Adaptar appointments para features do calendário
-  const features = appointments.map((appointment) => ({
-    id: appointment.id.toString(),
-    name: appointment.client + ' - ' + appointment.service,
-    startAt: new Date(appointment.date + 'T' + appointment.time),
-    endAt: new Date(appointment.date + 'T' + appointment.time),
-    status: { id: appointment.status, name: appointment.status, color: '#10B981' },
-  }));
 
   // Função para formatar a data
   const formatDate = (date: Date) => {
@@ -270,44 +251,34 @@ export default function AgendaPage() {
           )}
 
           {view === "week" && (
-            <div className="w-full">
-              <CalendarProvider locale="pt-BR" startDay={0}>
-                <CalendarDate>
-                  <CalendarDatePicker>
-                    <CalendarMonthPicker />
-                    <CalendarYearPicker start={2020} end={2030} />
-                  </CalendarDatePicker>
-                  <CalendarDatePagination />
-                </CalendarDate>
-                <CalendarHeader />
-                {/* Para semana, renderize apenas os dias da semana atual */}
-                <CalendarBody features={features.filter(f => {
-                  const today = new Date();
-                  const startOfWeek = new Date(today.setDate(today.getDate() - today.getDay()));
-                  const endOfWeek = new Date(today.setDate(today.getDate() - today.getDay() + 6));
-                  return f.startAt >= startOfWeek && f.startAt <= endOfWeek;
-                })}>
-                  {({ feature }) => <CalendarItem key={feature.id} feature={feature} />}
-                </CalendarBody>
-              </CalendarProvider>
+            <div className="overflow-x-auto">
+              <div className="grid grid-cols-7 gap-2">
+                {[...Array(7)].map((_, i) => {
+                  const weekStart = new Date(currentDate);
+                  const day = new Date(weekStart.setDate(weekStart.getDate() - weekStart.getDay() + i));
+                  const dayLabel = day.toLocaleDateString('pt-BR', { weekday: 'short', day: 'numeric' });
+                  return (
+                    <div key={i} className="bg-gray-50 dark:bg-gray-700 rounded-md p-2 min-h-[120px]">
+                      <div className="font-medium text-sm mb-2">{dayLabel}</div>
+                      {appointments.filter(a => a.date === day.toISOString().split('T')[0]).length === 0 ? (
+                        <div className="text-xs text-gray-400">Sem agendamentos</div>
+                      ) : (
+                        appointments.filter(a => a.date === day.toISOString().split('T')[0]).map(a => (
+                          <div key={a.id} className="mb-1 p-1 rounded bg-primary/10 text-xs">
+                            <span className="font-semibold">{a.time}</span> - {a.client}
+                          </div>
+                        ))
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           )}
 
           {view === "month" && (
-            <div className="w-full">
-              <CalendarProvider locale="pt-BR" startDay={0}>
-                <CalendarDate>
-                  <CalendarDatePicker>
-                    <CalendarMonthPicker />
-                    <CalendarYearPicker start={2020} end={2030} />
-                  </CalendarDatePicker>
-                  <CalendarDatePagination />
-                </CalendarDate>
-                <CalendarHeader />
-                <CalendarBody features={features}>
-                  {({ feature }) => <CalendarItem key={feature.id} feature={feature} />}
-                </CalendarBody>
-              </CalendarProvider>
+            <div className="overflow-x-auto">
+              <AvailabilityCalendar />
             </div>
           )}
         </div>
