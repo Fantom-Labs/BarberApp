@@ -5,9 +5,48 @@ import { FiCalendar, FiClock, FiUser, FiPlus, FiChevronDown } from "react-icons/
 import AppointmentModal from "@/components/AppointmentModal";
 import useAppointmentModal from "@/hooks/useAppointmentModal";
 import { AvailabilityCalendar } from "@/components/AvailabilityCalendar";
+import { Calendar, dateFnsLocalizer } from 'react-big-calendar';
+import { format, parse, startOfWeek, getDay } from 'date-fns';
+import ptBR from 'date-fns/locale/pt-BR';
+import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 // Forçar renderização dinâmica
 export const dynamic = 'force-dynamic';
+
+const locales = {
+  'pt-BR': ptBR,
+};
+
+const localizer = dateFnsLocalizer({
+  format,
+  parse,
+  startOfWeek: () => startOfWeek(new Date(), { weekStartsOn: 0 }),
+  getDay,
+  locales,
+});
+
+const events = [
+  {
+    title: 'Corte com João',
+    start: new Date(2025, 6, 21, 9, 0),
+    end: new Date(2025, 6, 21, 10, 0),
+  },
+  {
+    title: 'Barba com Maria',
+    start: new Date(2025, 6, 22, 11, 0),
+    end: new Date(2025, 6, 22, 11, 30),
+  },
+  {
+    title: 'Coloração com Ana',
+    start: new Date(2025, 6, 23, 13, 30),
+    end: new Date(2025, 6, 23, 15, 0),
+  },
+  {
+    title: 'Corte com Lucas',
+    start: new Date(2025, 6, 24, 15, 30),
+    end: new Date(2025, 6, 24, 16, 0),
+  },
+];
 
 export default function AgendaPage() {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -74,214 +113,14 @@ export default function AgendaPage() {
 
       {/* Controles de Calendário */}
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4">
-        <div className="flex flex-col sm:flex-row justify-between items-center mb-4">
-          <div className="flex items-center space-x-4 mb-4 sm:mb-0">
-            <button className="p-2 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-            <h2 className="text-lg font-medium">{formatDate(currentDate)}</h2>
-            <button className="p-2 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-          </div>
-
-          <div className="flex space-x-2">
-            <button
-              onClick={() => setView("day")}
-              className={`px-3 py-1 rounded-md ${
-                view === "day"
-                  ? "bg-primary text-white"
-                  : "bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300"
-              }`}
-            >
-              Dia
-            </button>
-            <button
-              onClick={() => setView("week")}
-              className={`px-3 py-1 rounded-md ${
-                view === "week"
-                  ? "bg-primary text-white"
-                  : "bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300"
-              }`}
-            >
-              Semana
-            </button>
-            <button
-              onClick={() => setView("month")}
-              className={`px-3 py-1 rounded-md ${
-                view === "month"
-                  ? "bg-primary text-white"
-                  : "bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300"
-              }`}
-            >
-              Mês
-            </button>
-          </div>
-        </div>
-
-        {/* Filtros Simplificados */}
-        <div className="flex flex-col sm:flex-row justify-between items-center mb-4 space-y-2 sm:space-y-0 sm:space-x-2">
-          <div className="flex space-x-2 w-full">
-            {/* Seletor de Barbeiro */}
-            <div className="relative w-full sm:w-64">
-              <button
-                onClick={() => setShowFilters(!showFilters)}
-                className="flex items-center justify-between w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
-              >
-                <span>{selectedBarber || "Todos os Barbeiros"}</span>
-                <FiChevronDown className="h-4 w-4 text-gray-500" />
-              </button>
-
-              {showFilters && (
-                <div className="absolute z-10 w-full mt-1 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md shadow-lg">
-                  <ul>
-                    <li
-                      className="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer"
-                      onClick={() => {
-                        setSelectedBarber(null);
-                        setShowFilters(false);
-                      }}
-                    >
-                      Geral
-                    </li>
-                    {barbers.map(barber => (
-                      <li
-                        key={barber.id}
-                        className="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer"
-                        onClick={() => {
-                          setSelectedBarber(barber.name);
-                          setShowFilters(false);
-                        }}
-                      >
-                        {barber.name}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-
-        {/* Agenda Geral com Resumo de Barbeiros (visível quando não há filtro) */}
-        {!selectedBarber && view === "day" && (
-          <div className="mb-6">
-            <h3 className="text-lg font-medium mb-3">Agenda Geral</h3>
-            <div className="flex space-x-4 overflow-x-auto pb-4 scrollbar-hide">
-              {barbers.map(barber => (
-                <div
-                  key={barber.id}
-                  className="flex-shrink-0 w-64 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4 shadow-sm"
-                >
-                  <div className="flex justify-between items-start mb-3">
-                    <h4 className="font-medium">{barber.name}</h4>
-                    <span className="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full">
-                      {barber.appointments} agendamentos
-                    </span>
-                  </div>
-
-                  <div className="space-y-2">
-                    <div className="flex justify-between text-sm">
-                      <span className="text-gray-500 dark:text-gray-400">Próximo horário:</span>
-                      <span className="font-medium">{barber.nextAvailable}</span>
-                    </div>
-
-                    <button
-                      onClick={() => setSelectedBarber(barber.name)}
-                      className="w-full mt-2 text-sm text-primary hover:text-primary-dark font-medium"
-                    >
-                      Ver agenda completa
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* Visualização de Agenda Filtrada */}
-        <div className="overflow-x-auto">
-          {view === "day" && (
-            <div className="space-y-2">
-              {/* Título da agenda filtrada */}
-              {selectedBarber && (
-                <div className="flex justify-between items-center mb-3">
-                  <h3 className="text-lg font-medium">Agenda: {selectedBarber}</h3>
-                  <button
-                    onClick={() => setSelectedBarber(null)}
-                    className="text-sm text-primary hover:text-primary-dark font-medium"
-                  >
-                    Voltar para agenda geral
-                  </button>
-                </div>
-              )}
-
-              {/* Lista de agendamentos */}
-              {appointments
-                .filter((appointment: any) => !selectedBarber || appointment.barber === selectedBarber)
-                .map((appointment: any) => (
-                <div
-                  key={appointment.id}
-                  className="flex items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-md hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors"
-                >
-                  <div className="flex-shrink-0 w-16 text-center">
-                    <span className="font-medium">{appointment.time}</span>
-                  </div>
-                  <div className="flex-grow ml-4 border-l border-gray-300 dark:border-gray-600 pl-4">
-                    <div className="flex justify-between">
-                      <h3 className="font-medium">{appointment.client}</h3>
-                      <span className="text-sm text-gray-500 dark:text-gray-400">{appointment.duration} min</span>
-                    </div>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">{appointment.service}</p>
-                  </div>
-                </div>
-              ))}
-
-              {/* Mensagem quando não há agendamentos */}
-              {selectedBarber && appointments.filter((appointment: any) => appointment.barber === selectedBarber).length === 0 && (
-                <div className="text-center p-6 text-gray-500 dark:text-gray-400">
-                  Nenhum agendamento encontrado para {selectedBarber}.
-                </div>
-              )}
-            </div>
-          )}
-
-          {view === "week" && (
-            <div className="overflow-x-auto">
-              <div className="grid grid-cols-7 gap-2">
-                {[...Array(7)].map((_, i) => {
-                  const weekStart = new Date(currentDate);
-                  const day = new Date(weekStart.setDate(weekStart.getDate() - weekStart.getDay() + i));
-                  const dayLabel = day.toLocaleDateString('pt-BR', { weekday: 'short', day: 'numeric' });
-                  return (
-                    <div key={i} className="bg-gray-50 dark:bg-gray-700 rounded-md p-2 min-h-[120px]">
-                      <div className="font-medium text-sm mb-2">{dayLabel}</div>
-                      {appointments.filter(a => a.date === day.toISOString().split('T')[0]).length === 0 ? (
-                        <div className="text-xs text-gray-400">Sem agendamentos</div>
-                      ) : (
-                        appointments.filter(a => a.date === day.toISOString().split('T')[0]).map(a => (
-                          <div key={a.id} className="mb-1 p-1 rounded bg-primary/10 text-xs">
-                            <span className="font-semibold">{a.time}</span> - {a.client}
-                          </div>
-                        ))
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          )}
-
-          {view === "month" && (
-            <div className="overflow-x-auto">
-              <AvailabilityCalendar />
-            </div>
-          )}
-        </div>
+        <Calendar
+          localizer={localizer}
+          events={events}
+          startAccessor="start"
+          endAccessor="end"
+          style={{ height: 600 }}
+          culture="pt-BR"
+        />
       </div>
 
       {/* Estatísticas do Dia */}
