@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { FiCalendar, FiShoppingBag, FiVideo, FiUser, FiSettings, FiLogOut, FiPackage, FiSun, FiMoon } from "react-icons/fi";
+import { FiCalendar, FiShoppingBag, FiVideo, FiUser, FiSettings, FiLogOut, FiPackage, FiSun, FiMoon, FiHome, FiMenu } from "react-icons/fi";
 import { Logo } from "./Logo";
 import { logout } from "@/lib/auth-service";
 import { useState, memo, useCallback } from "react";
@@ -72,12 +72,26 @@ export const Sidebar = memo(function Sidebar() {
       <nav className="flex-1 p-4 space-y-2">
         <SidebarLink
           href="/dashboard"
-          icon={<FiCalendar />}
-          active={pathname === "/dashboard" || pathname.startsWith("/dashboard/appointments")}
+          icon={<FiHome />}
+          active={pathname === "/dashboard"}
         >
-          Agendamentos
+          Home
         </SidebarLink>
-
+        <SidebarLink
+          href="/dashboard/agenda"
+          icon={<FiCalendar />}
+          active={pathname.startsWith("/dashboard/agenda")}
+        >
+          Agenda
+        </SidebarLink>
+        <SidebarLink
+          href="/dashboard/functions"
+          icon={<FiMenu />}
+          active={pathname.startsWith("/dashboard/functions")}
+        >
+          Funções
+        </SidebarLink>
+        {/* Outros links existentes, exceto Agendamentos duplicado */}
         <SidebarLink
           href="/dashboard/orders"
           icon={<FiPackage />}
@@ -85,7 +99,6 @@ export const Sidebar = memo(function Sidebar() {
         >
           Pedidos
         </SidebarLink>
-
         <SidebarLink
           href="/dashboard/products"
           icon={<FiShoppingBag />}
@@ -100,7 +113,6 @@ export const Sidebar = memo(function Sidebar() {
         >
           + Adicionar Produto
         </SidebarLink>
-
         <SidebarLink
           href="/dashboard/courses"
           icon={<FiVideo />}
@@ -108,7 +120,6 @@ export const Sidebar = memo(function Sidebar() {
         >
           Cursos
         </SidebarLink>
-
         <SidebarLink
           href="/dashboard/profile"
           icon={<FiUser />}
@@ -116,7 +127,6 @@ export const Sidebar = memo(function Sidebar() {
         >
           Perfil
         </SidebarLink>
-
         <SidebarLink
           href="/dashboard/settings"
           icon={<FiSettings />}
