@@ -88,8 +88,8 @@ export const MainNavigation = memo(function MainNavigation({ className = "" }: M
                 Funções
               </NavLink>
               <NavLink
-                href="/dashboard/functions/reports"
-                active={isActive("/dashboard/functions/reports")}
+                href="/dashboard/functions/management"
+                active={isActive("/dashboard/functions/management")}
                 icon={<FiPieChart className="h-5 w-5" />}
               >
                 Gestão
