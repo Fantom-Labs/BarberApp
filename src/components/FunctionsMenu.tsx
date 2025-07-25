@@ -107,11 +107,6 @@ export function FunctionsMenu({ onClose, className = "" }: FunctionsMenuProps) {
       icon: <FiUsers className="h-5 w-5" />,
     },
     {
-      name: "Adicionar Barbeiro",
-      href: "/dashboard/functions/barbers/new",
-      icon: <FiScissors className="h-5 w-5" />,
-    },
-    {
       name: "Gestão",
       href: "/dashboard/functions/management",
       icon: <FiPieChart className="h-5 w-5" />,
@@ -125,11 +120,6 @@ export function FunctionsMenu({ onClose, className = "" }: FunctionsMenuProps) {
       name: "Vendas",
       href: "/dashboard/functions/sales",
       icon: <FiDollarSign className="h-5 w-5" />,
-    },
-    {
-      name: "Relatórios",
-      href: "/dashboard/functions/reports",
-      icon: <FiBarChart2 className="h-5 w-5" />,
     },
     {
       name: "Produtos",

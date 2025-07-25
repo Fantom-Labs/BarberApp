@@ -21,13 +21,6 @@ export const Header = memo(function Header({ title }: HeaderProps) {
 
       <div className="flex items-center space-x-4">
         <NotificationsPanel />
-        <button
-          className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300 relative"
-          title="Carrinho"
-        >
-          <FiShoppingCart className="h-5 w-5" />
-          <span className="absolute -top-1 -right-1 bg-primary text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">3</span>
-        </button>
         <ThemeToggle />
       </div>
     </header>
