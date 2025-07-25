@@ -48,6 +48,22 @@ const events = [
   },
 ];
 
+// Adicionar função para determinar status do agendamento
+function getStatus(appointment: any) {
+  const now = new Date();
+  const date = new Date(appointment.date + 'T' + appointment.time);
+  const end = new Date(date.getTime() + appointment.duration * 60000);
+  if (now < date) return 'marcado';
+  if (now >= date && now <= end) return 'atual';
+  return 'concluido';
+}
+
+const statusColors = {
+  marcado: 'bg-blue-500',
+  atual: 'bg-yellow-500',
+  concluido: 'bg-green-500',
+};
+
 export default function AgendaPage() {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [view, setView] = useState<"day" | "week" | "month">("day");
@@ -148,16 +164,63 @@ export default function AgendaPage() {
         </button>
       </div>
 
-      {/* Controles de Calendário */}
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4">
-        <Calendar
-          localizer={localizer}
-          events={events}
-          startAccessor="start"
-          endAccessor="end"
-          style={{ height: 600 }}
-          culture="pt-BR"
-        />
+      {/* Filtro de profissional */}
+      <div className="flex gap-2 mb-4">
+        <button
+          className={`px-4 py-2 rounded-md font-medium ${!selectedBarber ? 'bg-primary text-white' : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200'}`}
+          onClick={() => setSelectedBarber(null)}
+        >
+          Todos
+        </button>
+        {barbers.map(barber => (
+          <button
+            key={barber.id}
+            className={`px-4 py-2 rounded-md font-medium ${selectedBarber === barber.name ? 'bg-primary text-white' : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200'}`}
+            onClick={() => setSelectedBarber(barber.name)}
+          >
+            {barber.name}
+          </button>
+        ))}
+      </div>
+
+      {/* Visualização semanal por profissional */}
+      <div className="overflow-x-auto">
+        <div className="min-w-[700px] grid grid-cols-1 md:grid-cols-7 gap-2">
+          {(() => {
+            // Dias da semana
+            const weekDays = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
+            const today = new Date();
+            const weekStart = new Date(today);
+            weekStart.setDate(today.getDate() - today.getDay());
+            return weekDays.map((day, i) => {
+              const dayDate = new Date(weekStart);
+              dayDate.setDate(weekStart.getDate() + i);
+              return (
+                <div key={day} className="bg-white dark:bg-gray-800 rounded-lg shadow p-2 min-h-[180px] flex flex-col">
+                  <div className="font-semibold text-center mb-2">{day} <span className="text-xs">{dayDate.getDate().toString().padStart(2, '0')}</span></div>
+                  <div className="flex-1 flex flex-col gap-2">
+                    {(selectedBarber ? appointments.filter(a => a.barber === selectedBarber) : appointments)
+                      .filter(a => a.date === dayDate.toISOString().split('T')[0])
+                      .map(a => (
+                        <div
+                          key={a.id}
+                          className={`rounded-md px-2 py-1 text-white text-xs font-medium shadow ${statusColors[getStatus(a)]}`}
+                          title={`${a.client} - ${a.service}`}
+                        >
+                          <div className="flex justify-between items-center">
+                            <span>{a.time}</span>
+                            <span className="capitalize">{getStatus(a)}</span>
+                          </div>
+                          <div>{a.client}</div>
+                          <div className="text-[10px]">{a.service}</div>
+                        </div>
+                      ))}
+                  </div>
+                </div>
+              );
+            });
+          })()}
+        </div>
       </div>
 
       {/* Estatísticas do Dia */}
