@@ -78,30 +78,30 @@ export function NotificationsPanel() {
 
   // Mark notification as read
   const markAsRead = (id: string) => {
-    setNotifications(prev => 
-      prev.map(notification => 
+    setNotifications(prev =>
+      prev.map(notification =>
         notification.id === id ? { ...notification, read: true } : notification
       )
     );
-    
+
     setUnreadCount(prev => Math.max(0, prev - 1));
   };
 
   // Mark all notifications as read
   const markAllAsRead = () => {
-    setNotifications(prev => 
+    setNotifications(prev =>
       prev.map(notification => ({ ...notification, read: true }))
     );
-    
+
     setUnreadCount(0);
   };
 
   // Delete notification
   const deleteNotification = (id: string) => {
     const notification = notifications.find(n => n.id === id);
-    
+
     setNotifications(prev => prev.filter(notification => notification.id !== id));
-    
+
     if (notification && !notification.read) {
       setUnreadCount(prev => Math.max(0, prev - 1));
     }
@@ -125,7 +125,7 @@ export function NotificationsPanel() {
     <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 relative"
+        className="p-2 rounded-full bg-gray-200 hover:bg-gray-300 dark:bg-gray-800 dark:hover:bg-gray-700 transition-colors relative"
         aria-label="Notifications"
       >
         <FiBell className="h-5 w-5" />
