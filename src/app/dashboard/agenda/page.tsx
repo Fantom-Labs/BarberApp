@@ -4,6 +4,17 @@ import React, { useState } from "react";
 import { FiCalendar, FiClock, FiUser, FiPlus, FiChevronDown } from "react-icons/fi";
 import AppointmentModal from "@/components/AppointmentModal";
 import useAppointmentModal from "@/hooks/useAppointmentModal";
+import {
+  CalendarProvider,
+  CalendarDate,
+  CalendarDatePicker,
+  CalendarMonthPicker,
+  CalendarYearPicker,
+  CalendarDatePagination,
+  CalendarHeader,
+  CalendarBody,
+  CalendarItem,
+} from "@/components/ui/calendar";
 
 // Forçar renderização dinâmica
 export const dynamic = 'force-dynamic';
@@ -21,7 +32,7 @@ export default function AgendaPage() {
     { id: 3, name: "Pedro Santos", appointments: 5, nextAvailable: "16:30" },
     { id: 4, name: "Marcos Souza", appointments: 4, nextAvailable: "13:45" },
   ];
-  
+
   // Dados de exemplo para agendamentos
   const appointments = [
     { id: 1, client: "João Silva", service: "Corte de Cabelo", time: "09:00", duration: 30, barber: "Rafael Silva", date: new Date().toISOString().split('T')[0], status: "confirmado" },
@@ -35,23 +46,32 @@ export default function AgendaPage() {
   const handleAppointmentCreated = (newAppointment: any) => {
     // Adicionar o novo agendamento à lista global
     appointments.push(newAppointment);
-    
+
     // Filtrar para mostrar apenas a agenda do barbeiro selecionado
     setTimeout(() => {
       setSelectedBarber(newAppointment.barber);
     }, 100);
   };
-  
+
   // Usar o hook personalizado para gerenciar o modal de agendamento
-  const { 
-    isModalOpen, 
-    openModal, 
-    closeModal, 
+  const {
+    isModalOpen,
+    openModal,
+    closeModal,
     handleSaveAppointment,
     clients,
     services,
     barbers: modalBarbers
   } = useAppointmentModal(appointments, handleAppointmentCreated);
+
+  // Adaptar appointments para features do calendário
+  const features = appointments.map((appointment) => ({
+    id: appointment.id.toString(),
+    name: appointment.client + ' - ' + appointment.service,
+    startAt: new Date(appointment.date + 'T' + appointment.time),
+    endAt: new Date(appointment.date + 'T' + appointment.time),
+    status: { id: appointment.status, name: appointment.status, color: '#10B981' },
+  }));
 
   // Função para formatar a data
   const formatDate = (date: Date) => {
@@ -87,9 +107,9 @@ export default function AgendaPage() {
               </svg>
             </button>
           </div>
-          
+
           <div className="flex space-x-2">
-            <button 
+            <button
               onClick={() => setView("day")}
               className={`px-3 py-1 rounded-md ${
                 view === "day"
@@ -99,7 +119,7 @@ export default function AgendaPage() {
             >
               Dia
             </button>
-            <button 
+            <button
               onClick={() => setView("week")}
               className={`px-3 py-1 rounded-md ${
                 view === "week"
@@ -109,7 +129,7 @@ export default function AgendaPage() {
             >
               Semana
             </button>
-            <button 
+            <button
               onClick={() => setView("month")}
               className={`px-3 py-1 rounded-md ${
                 view === "month"
@@ -121,24 +141,24 @@ export default function AgendaPage() {
             </button>
           </div>
         </div>
-        
+
         {/* Filtros Simplificados */}
         <div className="flex flex-col sm:flex-row justify-between items-center mb-4 space-y-2 sm:space-y-0 sm:space-x-2">
           <div className="flex space-x-2 w-full">
             {/* Seletor de Barbeiro */}
             <div className="relative w-full sm:w-64">
-              <button 
+              <button
                 onClick={() => setShowFilters(!showFilters)}
                 className="flex items-center justify-between w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
               >
                 <span>{selectedBarber || "Todos os Barbeiros"}</span>
                 <FiChevronDown className="h-4 w-4 text-gray-500" />
               </button>
-              
+
               {showFilters && (
                 <div className="absolute z-10 w-full mt-1 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md shadow-lg">
                   <ul>
-                    <li 
+                    <li
                       className="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer"
                       onClick={() => {
                         setSelectedBarber(null);
@@ -148,7 +168,7 @@ export default function AgendaPage() {
                       Geral
                     </li>
                     {barbers.map(barber => (
-                      <li 
+                      <li
                         key={barber.id}
                         className="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer"
                         onClick={() => {
@@ -165,14 +185,14 @@ export default function AgendaPage() {
             </div>
           </div>
         </div>
-        
+
         {/* Agenda Geral com Resumo de Barbeiros (visível quando não há filtro) */}
         {!selectedBarber && view === "day" && (
           <div className="mb-6">
             <h3 className="text-lg font-medium mb-3">Agenda Geral</h3>
             <div className="flex space-x-4 overflow-x-auto pb-4 scrollbar-hide">
               {barbers.map(barber => (
-                <div 
+                <div
                   key={barber.id}
                   className="flex-shrink-0 w-64 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4 shadow-sm"
                 >
@@ -182,14 +202,14 @@ export default function AgendaPage() {
                       {barber.appointments} agendamentos
                     </span>
                   </div>
-                  
+
                   <div className="space-y-2">
                     <div className="flex justify-between text-sm">
                       <span className="text-gray-500 dark:text-gray-400">Próximo horário:</span>
                       <span className="font-medium">{barber.nextAvailable}</span>
                     </div>
-                    
-                    <button 
+
+                    <button
                       onClick={() => setSelectedBarber(barber.name)}
                       className="w-full mt-2 text-sm text-primary hover:text-primary-dark font-medium"
                     >
@@ -201,7 +221,7 @@ export default function AgendaPage() {
             </div>
           </div>
         )}
-        
+
         {/* Visualização de Agenda Filtrada */}
         <div className="overflow-x-auto">
           {view === "day" && (
@@ -210,7 +230,7 @@ export default function AgendaPage() {
               {selectedBarber && (
                 <div className="flex justify-between items-center mb-3">
                   <h3 className="text-lg font-medium">Agenda: {selectedBarber}</h3>
-                  <button 
+                  <button
                     onClick={() => setSelectedBarber(null)}
                     className="text-sm text-primary hover:text-primary-dark font-medium"
                   >
@@ -218,12 +238,12 @@ export default function AgendaPage() {
                   </button>
                 </div>
               )}
-              
+
               {/* Lista de agendamentos */}
               {appointments
                 .filter((appointment: any) => !selectedBarber || appointment.barber === selectedBarber)
                 .map((appointment: any) => (
-                <div 
+                <div
                   key={appointment.id}
                   className="flex items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-md hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors"
                 >
@@ -239,7 +259,7 @@ export default function AgendaPage() {
                   </div>
                 </div>
               ))}
-              
+
               {/* Mensagem quando não há agendamentos */}
               {selectedBarber && appointments.filter((appointment: any) => appointment.barber === selectedBarber).length === 0 && (
                 <div className="text-center p-6 text-gray-500 dark:text-gray-400">
@@ -250,14 +270,44 @@ export default function AgendaPage() {
           )}
 
           {view === "week" && (
-            <div className="text-center p-10 text-gray-500 dark:text-gray-400">
-              Visualização semanal será implementada em breve.
+            <div className="w-full">
+              <CalendarProvider locale="pt-BR" startDay={0}>
+                <CalendarDate>
+                  <CalendarDatePicker>
+                    <CalendarMonthPicker />
+                    <CalendarYearPicker start={2020} end={2030} />
+                  </CalendarDatePicker>
+                  <CalendarDatePagination />
+                </CalendarDate>
+                <CalendarHeader />
+                {/* Para semana, renderize apenas os dias da semana atual */}
+                <CalendarBody features={features.filter(f => {
+                  const today = new Date();
+                  const startOfWeek = new Date(today.setDate(today.getDate() - today.getDay()));
+                  const endOfWeek = new Date(today.setDate(today.getDate() - today.getDay() + 6));
+                  return f.startAt >= startOfWeek && f.startAt <= endOfWeek;
+                })}>
+                  {({ feature }) => <CalendarItem key={feature.id} feature={feature} />}
+                </CalendarBody>
+              </CalendarProvider>
             </div>
           )}
 
           {view === "month" && (
-            <div className="text-center p-10 text-gray-500 dark:text-gray-400">
-              Visualização mensal será implementada em breve.
+            <div className="w-full">
+              <CalendarProvider locale="pt-BR" startDay={0}>
+                <CalendarDate>
+                  <CalendarDatePicker>
+                    <CalendarMonthPicker />
+                    <CalendarYearPicker start={2020} end={2030} />
+                  </CalendarDatePicker>
+                  <CalendarDatePagination />
+                </CalendarDate>
+                <CalendarHeader />
+                <CalendarBody features={features}>
+                  {({ feature }) => <CalendarItem key={feature.id} feature={feature} />}
+                </CalendarBody>
+              </CalendarProvider>
             </div>
           )}
         </div>
