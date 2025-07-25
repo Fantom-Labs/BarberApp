@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FiCalendar, FiShoppingBag, FiVideo, FiMenu, FiX, FiHome, FiMessageCircle, FiBarChart2, FiSettings } from "react-icons/fi";
+import { FiCalendar, FiShoppingBag, FiVideo, FiMenu, FiX, FiHome, FiMessageCircle, FiBarChart2, FiSettings, FiPieChart } from "react-icons/fi";
 import { FunctionsMenu } from "./FunctionsMenu";
 
 export function MobileNavigation() {
@@ -32,7 +32,7 @@ export function MobileNavigation() {
             href="/dashboard/support"
             active={isActive("/dashboard/support")}
             icon={<FiMessageCircle className="h-5 w-5" />}
-            label="Atendimento"
+            label="Chat"
           />
           <MobileNavLink
             href="/dashboard/agenda"
@@ -47,10 +47,10 @@ export function MobileNavigation() {
             label="Funções"
           />
           <MobileNavLink
-            href="/dashboard/functions/reports"
-            active={isActive("/dashboard/functions/reports")}
-            icon={<FiBarChart2 className="h-5 w-5" />}
-            label="Relatórios"
+            href="/dashboard/functions/management"
+            active={isActive("/dashboard/functions/management")}
+            icon={<FiPieChart className="h-5 w-5" />}
+            label="Gestão"
           />
         </div>
       </div>
