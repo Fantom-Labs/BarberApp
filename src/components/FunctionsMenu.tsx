@@ -138,9 +138,6 @@ export function FunctionsMenu({ onClose, className = "" }: FunctionsMenuProps) {
 
   return (
     <div className={`py-2 bg-white dark:bg-gray-900 rounded-md shadow-lg ${className}`}>
-      <div className="px-4 py-2 border-b border-gray-200 dark:border-gray-800">
-        <h3 className="font-medium text-gray-800 dark:text-gray-200">Funções</h3>
-      </div>
       <div className="max-h-[calc(100vh-200px)] overflow-y-auto">
         {menuItems.map((item) => (
           item.onClick ? (
