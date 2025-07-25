@@ -113,13 +113,8 @@ export function FunctionsMenu({ onClose, className = "" }: FunctionsMenuProps) {
     },
     {
       name: "Marketing",
-      href: "/dashboard/functions/marketing",
-      icon: <FiTrendingUp className="h-5 w-5" />,
-    },
-    {
-      name: "Vendas",
       href: "/dashboard/functions/sales",
-      icon: <FiDollarSign className="h-5 w-5" />,
+      icon: <FiTrendingUp className="h-5 w-5" />,
     },
     {
       name: "Produtos",
