@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { FiCalendar, FiClock, FiUser, FiPlus, FiChevronDown } from "react-icons/fi";
+import { FiCalendar, FiClock, FiUser, FiPlus, FiChevronDown, FiTrendingUp, FiUsers, FiBarChart2 } from "react-icons/fi";
 import AppointmentModal from "@/components/AppointmentModal";
 import useAppointmentModal from "@/hooks/useAppointmentModal";
 import { AvailabilityCalendar } from "@/components/AvailabilityCalendar";
@@ -98,8 +98,45 @@ export default function AgendaPage() {
     return date.toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'long' });
   };
 
+  const stats = [
+    {
+      title: 'Total de Agendamentos',
+      value: appointments.length,
+      icon: <FiCalendar className="w-6 h-6 text-blue-600" />,
+      badge: '+5% esta semana',
+      badgeColor: 'bg-blue-100 text-blue-600',
+    },
+    {
+      title: 'Clientes Atendidos',
+      value: 5, // valor mockado
+      icon: <FiUsers className="w-6 h-6 text-green-600" />,
+      badge: '+2 novos',
+      badgeColor: 'bg-green-100 text-green-600',
+    },
+    {
+      title: 'Tempo Total',
+      value: '3h 35min',
+      icon: <FiClock className="w-6 h-6 text-purple-600" />,
+      badge: '-10min',
+      badgeColor: 'bg-purple-100 text-purple-600',
+    },
+  ];
+
   return (
     <div className="space-y-6 relative">
+      {/* Grid de cards estatísticos */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        {stats.map((stat, i) => (
+          <div key={i} className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 flex flex-col gap-3 border border-gray-100 dark:border-gray-700">
+            <div className="flex items-center gap-3">
+              {stat.icon}
+              <span className={`px-2 py-1 rounded-full text-xs font-medium ${stat.badgeColor}`}>{stat.badge}</span>
+            </div>
+            <div className="text-2xl font-bold text-gray-900 dark:text-white">{stat.value}</div>
+            <div className="text-sm text-gray-500 dark:text-gray-400">{stat.title}</div>
+          </div>
+        ))}
+      </div>
       <div className="flex justify-between items-center">
         <h1 className="text-2xl font-bold">Agenda</h1>
         <button

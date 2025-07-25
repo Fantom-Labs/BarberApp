@@ -67,7 +67,7 @@ export default function DashboardPage() {
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold">Bem-vindo ao seu Negócio</h1>
+        <h1 className="text-2xl font-bold">Bem-vindo a sua barbearia</h1>
       </div>
 
       {/* Principais Indicadores */}
@@ -163,7 +163,7 @@ export default function DashboardPage() {
         {/* Ranking de Barbeiros */}
         <div className="md:col-span-3 bg-white dark:bg-gray-800 rounded-lg shadow-md p-4">
           <div className="flex justify-between items-center mb-3">
-            <h2 className="text-lg font-semibold">Ranking de Barbeiros</h2>
+            <h2 className="text-lg font-semibold">Ranking</h2>
             <Link
               href="/dashboard/functions/reports"
               className="text-primary hover:text-primary-dark text-sm flex items-center"
