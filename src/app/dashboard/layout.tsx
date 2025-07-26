@@ -35,7 +35,6 @@ export default function DashboardLayout({
               >
                 <FiMenu className="h-6 w-6" />
               </button>
-              <h1 className="text-xl font-semibold text-gray-900 dark:text-dark-text-primary">Dashboard</h1>
             </div>
 
             <div className="flex items-center space-x-4">
