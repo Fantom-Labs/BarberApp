@@ -52,7 +52,7 @@ export function NotificationsPanel() {
     const mockNotifications: Notification[] = [
       {
         id: "1",
-        type: "appointment",
+        type: "success",
         title: "Lembrete de Agendamento",
         message: "Você tem um agendamento amanhã às 14:00 com o barbeiro Carlos.",
         time: "Há 5 minutos",
@@ -60,7 +60,7 @@ export function NotificationsPanel() {
       },
       {
         id: "2",
-        type: "order",
+        type: "info",
         title: "Pedido Enviado",
         message: "Seu pedido #1234 foi enviado e está a caminho.",
         time: "Há 2 horas",
@@ -68,7 +68,7 @@ export function NotificationsPanel() {
       },
       {
         id: "3",
-        type: "message",
+        type: "warning",
         title: "Nova Mensagem",
         message: "João enviou uma mensagem sobre seu agendamento.",
         time: "Há 1 dia",
@@ -76,7 +76,7 @@ export function NotificationsPanel() {
       },
       {
         id: "4",
-        type: "system",
+        type: "success",
         title: "Atualização do Sistema",
         message: "Novos recursos foram adicionados à plataforma.",
         time: "Há 3 dias",
