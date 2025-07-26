@@ -54,7 +54,7 @@ export default function DashboardLayout({
         </header>
 
         {/* Conteúdo com padding-top para compensar o header fixo */}
-        <div className="pt-10 flex-1 flex overflow-hidden scrollbar-hide">
+        <div className="pt-12 flex-1 flex overflow-hidden scrollbar-hide">
           {/* Menu de Funções Fixo na Lateral Esquerda - Apenas Desktop */}
           <div className="hidden md:block w-64 border-r border-gray-200 dark:border-dark-border overflow-y-auto scrollbar-hide">
             <FunctionsMenu className="h-full rounded-none shadow-none" />
