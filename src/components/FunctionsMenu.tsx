@@ -158,20 +158,22 @@ export function FunctionsMenu({ onClose, className = "" }: FunctionsMenuProps) {
 
       {/* Menu Items */}
       <nav className="flex-1 p-4 space-y-2">
-        {menuItems.map((item) => (
-          <Link
-            key={item.name}
-            href={item.href}
-            className={`flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
-              router.pathname === item.href || router.pathname.startsWith(item.href + "/")
-                ? "bg-cakto-green text-white"
-                : "text-gray-700 dark:text-dark-text-secondary hover:text-gray-900 dark:hover:text-dark-text-primary hover:bg-gray-100 dark:hover:bg-dark-bg-secondary"
-            }`}
-          >
-            {item.icon}
-            <span>{item.name}</span>
-          </Link>
-        ))}
+        {menuItems.map((item) =>
+          item.href ? (
+            <Link
+              key={item.name}
+              href={item.href}
+              className={`flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                router.pathname === item.href || router.pathname.startsWith(item.href + "/")
+                  ? "bg-cakto-green text-white"
+                  : "text-gray-700 dark:text-dark-text-secondary hover:text-gray-900 dark:hover:text-dark-text-primary hover:bg-gray-100 dark:hover:bg-dark-bg-secondary"
+              }`}
+            >
+              {item.icon}
+              <span>{item.name}</span>
+            </Link>
+          ) : null
+        )}
       </nav>
 
       {/* Footer */}
