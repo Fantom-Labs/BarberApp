@@ -153,7 +153,6 @@ export function FunctionsMenu({ onClose, className = "" }: FunctionsMenuProps) {
           </div>
           <div>
             <h2 className="text-lg font-semibold text-gray-900 dark:text-dark-text-primary">BarberApp</h2>
-            <p className="text-sm text-gray-500 dark:text-dark-text-tertiary">Dashboard</p>
           </div>
         </div>
       </div>
