@@ -74,7 +74,7 @@ export default function DashboardPage() {
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4">
         <div className="flex justify-between items-center mb-3">
           <div className="flex items-center">
-            <h2 className="text-lg font-semibold mr-3">Principais Indicadores</h2>
+            <h2 className="text-lg font-semibold mr-3">Indicadores</h2>
             <div className="flex bg-gray-100 dark:bg-gray-700 rounded-md p-1">
               <button
                 onClick={() => setPeriodFilter("today")}
@@ -158,22 +158,20 @@ export default function DashboardPage() {
       {/* Banner de Propagandas */}
       {/* Slider de produtos removido conforme solicitado */}
 
-      {/* Ranking e Ações Rápidas */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        {/* Ranking de Barbeiros */}
-        <div className="md:col-span-3 bg-white dark:bg-gray-800 rounded-lg shadow-md p-4">
-          <div className="flex justify-between items-center mb-3">
-            <h2 className="text-lg font-semibold">Ranking</h2>
-            <Link
-              href="/dashboard/functions/reports"
-              className="text-primary hover:text-primary-dark text-sm flex items-center"
-            >
-              <span>Ver mais</span>
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </Link>
-          </div>
+      {/* Ranking */}
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4">
+        <div className="flex justify-between items-center mb-3">
+          <h2 className="text-lg font-semibold">Ranking</h2>
+          <Link
+            href="/dashboard/functions/reports"
+            className="text-primary hover:text-primary-dark text-sm flex items-center"
+          >
+            <span>Ver mais</span>
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </Link>
+        </div>
 
           {/* Pódio Redesenhado - Estilo Horizontal */}
           <div className="flex items-center justify-center h-24 relative mb-2">
@@ -225,42 +223,6 @@ export default function DashboardPage() {
             Ranking baseado na média de desempenho mensal
           </div>
         </div>
-
-        {/* Botões de Ação Rápida */}
-        <div className="flex flex-col space-y-2 md:space-y-3">
-          <Link
-            href="/dashboard/products/new"
-            className="flex items-center justify-center bg-primary hover:bg-primary-dark text-white rounded-lg shadow-md p-2 md:p-3 transition-colors"
-          >
-            <FiShoppingBag className="h-4 w-4 md:h-5 md:w-5 mr-2" />
-            <span className="font-medium text-sm md:text-base">+ Produto</span>
-          </Link>
-
-          <button
-            onClick={openModal}
-            className="flex items-center justify-center bg-blue-500 hover:bg-blue-600 text-white rounded-lg shadow-md p-2 md:p-3 transition-colors w-full"
-          >
-            <FiCalendar className="h-4 w-4 md:h-5 md:w-5 mr-2" />
-            <span className="font-medium text-sm md:text-base">+ Serviço</span>
-          </button>
-
-          <Link
-            href="/dashboard/courses/new"
-            className="flex items-center justify-center bg-green-500 hover:bg-green-600 text-white rounded-lg shadow-md p-2 md:p-3 transition-colors"
-          >
-            <FiVideo className="h-4 w-4 md:h-5 md:w-5 mr-2" />
-            <span className="font-medium text-sm md:text-base">+ Curso</span>
-          </Link>
-
-          <Link
-            href="/dashboard/functions/barbers/new"
-            className="flex items-center justify-center bg-blue-400 hover:bg-blue-500 text-white rounded-lg shadow-md p-2 md:p-3 transition-colors"
-          >
-            <FiScissors className="h-4 w-4 md:h-5 md:w-5 mr-2" />
-            <span className="font-medium text-sm md:text-base">+ Equipe</span>
-          </Link>
-        </div>
-      </div>
 
       {/* Acesso Rápido */}
       <div>
