@@ -23,10 +23,10 @@ export default function DashboardLayout({
 
         <div className="flex-1 flex overflow-hidden scrollbar-hide">
           {/* Menu de Funções Fixo na Lateral Esquerda - Apenas Desktop */}
-          <div className="hidden md:block w-64 border-r border-gray-200 dark:border-gray-700 overflow-y-auto scrollbar-hide">
+          <div className="hidden md:block w-64 border-r border-gray-200 dark:border-dark-border overflow-y-auto scrollbar-hide">
             <FunctionsMenu className="h-full rounded-none shadow-none" />
           </div>
-          <main className="flex-1 overflow-y-auto p-4 pb-20 md:pb-4 scrollbar-hide">
+          <main className="flex-1 overflow-y-auto p-4 pb-20 md:pb-4 scrollbar-hide bg-white dark:bg-dark-bg">
             {children}
           </main>
         </div>

@@ -71,20 +71,20 @@ export default function DashboardPage() {
       </div>
 
       {/* Principais Indicadores */}
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4">
+      <div className="bg-white dark:bg-dark-card rounded-lg shadow-md p-4">
         <div className="flex justify-between items-center mb-3">
           <div className="flex items-center">
-            <h2 className="text-lg font-semibold mr-3">Indicadores</h2>
-            <div className="flex bg-gray-100 dark:bg-gray-700 rounded-md p-1">
+            <h2 className="text-lg font-semibold mr-3 dark:text-dark-text">Indicadores</h2>
+            <div className="flex bg-gray-100 dark:bg-dark-bg rounded-md p-1">
               <button
                 onClick={() => setPeriodFilter("today")}
-                className={`px-3 py-1 text-xs font-medium rounded-md transition-colors ${periodFilter === "today" ? "bg-white dark:bg-gray-600 shadow-sm" : "text-gray-600 dark:text-gray-300"}`}
+                className={`px-3 py-1 text-xs font-medium rounded-md transition-colors ${periodFilter === "today" ? "bg-white dark:bg-dark-surface shadow-sm" : "text-gray-600 dark:text-dark-text"}`}
               >
                 Hoje
               </button>
               <button
                 onClick={() => setPeriodFilter("month")}
-                className={`px-3 py-1 text-xs font-medium rounded-md transition-colors ${periodFilter === "month" ? "bg-white dark:bg-gray-600 shadow-sm" : "text-gray-600 dark:text-gray-300"}`}
+                className={`px-3 py-1 text-xs font-medium rounded-md transition-colors ${periodFilter === "month" ? "bg-white dark:bg-dark-surface shadow-sm" : "text-gray-600 dark:text-dark-text"}`}
               >
                 Mês
               </button>
@@ -159,9 +159,9 @@ export default function DashboardPage() {
       {/* Slider de produtos removido conforme solicitado */}
 
       {/* Ranking */}
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4">
+      <div className="bg-white dark:bg-dark-card rounded-lg shadow-md p-4">
         <div className="flex justify-between items-center mb-3">
-          <h2 className="text-lg font-semibold">Ranking</h2>
+          <h2 className="text-lg font-semibold dark:text-dark-text">Ranking</h2>
           <Link
             href="/dashboard/functions/reports"
             className="text-primary hover:text-primary-dark text-sm flex items-center"
@@ -226,13 +226,13 @@ export default function DashboardPage() {
 
       {/* Acesso Rápido */}
       <div>
-        <h2 className="text-xl font-semibold mb-4">Acesso Rápido</h2>
+        <h2 className="text-xl font-semibold mb-4 dark:text-dark-text">Acesso Rápido</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {quickAccess.map((item, index) => (
             <button
               key={index}
               onClick={item.onClick}
-              className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow text-left w-full"
+              className="bg-white dark:bg-dark-card rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow text-left w-full"
             >
               <div className="flex items-center space-x-3">
                 <div className="p-2 rounded-lg bg-primary/10 text-primary">
@@ -246,8 +246,8 @@ export default function DashboardPage() {
       </div>
 
       {/* Atividades Recentes */}
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 mt-8">
-        <h2 className="text-xl font-semibold mb-4">Atividades Recentes</h2>
+      <div className="bg-white dark:bg-dark-card rounded-lg shadow-md p-4 mt-8">
+        <h2 className="text-xl font-semibold mb-4 dark:text-dark-text">Atividades Recentes</h2>
         <div className="space-y-4">
           {[1, 2, 3].map((item) => (
             <div key={item} className="flex items-start space-x-3 p-2 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-lg">

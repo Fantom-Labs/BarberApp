@@ -142,27 +142,27 @@ export function FunctionsMenu({ onClose, className = "" }: FunctionsMenuProps) {
   ];
 
   return (
-    <div className={`py-2 bg-white dark:bg-gray-900 rounded-md shadow-lg ${className}`}>
+    <div className={`py-2 bg-white dark:bg-dark-surface rounded-md shadow-lg ${className}`}>
       <div className="max-h-[calc(100vh-200px)] overflow-y-auto">
         {menuItems.map((item) => (
           item.onClick ? (
             <button
               key={item.name}
               onClick={item.onClick}
-              className="w-full flex items-center space-x-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-left"
+              className="w-full flex items-center space-x-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-dark-bg transition-colors text-left"
             >
               <span className="text-primary">{item.icon}</span>
-              <span className="text-gray-700 dark:text-gray-300">{item.name}</span>
+              <span className="text-gray-700 dark:text-dark-text">{item.name}</span>
             </button>
           ) : (
             <Link
               key={item.name}
               href={item.href!}
               onClick={onClose}
-              className="flex items-center space-x-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-left w-full"
+              className="flex items-center space-x-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-dark-bg transition-colors text-left w-full"
             >
               <span className="text-primary">{item.icon}</span>
-              <span className="text-gray-700 dark:text-gray-300">{item.name}</span>
+              <span className="text-gray-700 dark:text-dark-text">{item.name}</span>
             </Link>
           )
         ))}
@@ -174,12 +174,12 @@ export function FunctionsMenu({ onClose, className = "" }: FunctionsMenuProps) {
         <button
           onClick={handleLogout}
           disabled={isLoggingOut}
-          className="w-full flex items-center space-x-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-left disabled:opacity-50"
+          className="w-full flex items-center space-x-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-dark-bg transition-colors text-left disabled:opacity-50"
         >
           <span className="text-primary">
             <FiLogOut className="h-5 w-5" />
           </span>
-          <span className="text-gray-700 dark:text-gray-300">
+          <span className="text-gray-700 dark:text-dark-text">
             {isLoggingOut ? "Saindo..." : "Sair"}
           </span>
         </button>

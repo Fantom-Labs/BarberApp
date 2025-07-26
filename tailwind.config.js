@@ -8,7 +8,21 @@ module.exports = {
     './src/styles/**/*.css',
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        dark: {
+          bg: '#161C24',
+          surface: '#1E252B',
+          text: '#919EAB',
+          textSecondary: '#8796A5',
+          textTertiary: '#90A4AE',
+          accent: '#0F7865',
+          accentHover: '#0F7864',
+          border: '#2A3138',
+          card: '#1E252B',
+        }
+      }
+    },
   },
   plugins: [],
 }
