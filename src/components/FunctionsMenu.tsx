@@ -104,30 +104,19 @@ export function FunctionsMenu({ onClose, className = "" }: FunctionsMenuProps) {
       icon: <FiCalendar className="h-5 w-5" />,
     },
     {
-      name: "Funções",
-      href: "/dashboard/functions",
-      icon: <FiMenu className="h-5 w-5" />,
-    },
-    {
       name: "Chat",
       href: "/dashboard/support",
       icon: <FiMessageCircle className="h-5 w-5" />,
     },
     {
-      name: "Minha Barbearia",
-      href: "/dashboard/functions/my-barbershop",
-      icon: <FiHome className="h-5 w-5" />,
+      name: "Gestão",
+      href: "/dashboard/functions/management",
+      icon: <FiPieChart className="h-5 w-5" />,
     },
-    // Removido o item 'Novo Agendamento'
     {
       name: "Clientes",
       href: "/dashboard/functions/clients",
       icon: <FiUsers className="h-5 w-5" />,
-    },
-    {
-      name: "Gestão",
-      href: "/dashboard/functions/management",
-      icon: <FiPieChart className="h-5 w-5" />,
     },
     {
       name: "Marketing",
@@ -138,6 +127,16 @@ export function FunctionsMenu({ onClose, className = "" }: FunctionsMenuProps) {
       name: "Produtos",
       href: "/dashboard/products",
       icon: <FiShoppingBag className="h-5 w-5" />,
+    },
+    {
+      name: "Minha Barbearia",
+      href: "/dashboard/functions/my-barbershop",
+      icon: <FiHome className="h-5 w-5" />,
+    },
+    {
+      name: "Funções",
+      href: "/dashboard/functions",
+      icon: <FiMenu className="h-5 w-5" />,
     },
     // Removido o item Configurações
   ];
