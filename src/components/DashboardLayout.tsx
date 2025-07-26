@@ -168,7 +168,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
         }`}
       >
         {/* Barra superior */}
-        <header className="sticky top-0 z-30 bg-white dark:bg-gray-800 shadow-sm h-16 flex items-center px-4 md:px-6">
+        <header className="sticky top-0 z-30 bg-white dark:bg-dark-surface shadow-sm h-16 flex items-center px-4 md:px-6">
           {isMobile && (
             <button
               onClick={toggleSidebar}
@@ -177,7 +177,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
               <FiMenu size={20} />
             </button>
           )}
-          <h1 className="text-xl font-semibold text-gray-800 dark:text-white">
+          <h1 className="text-xl font-semibold text-gray-800 dark:text-dark-text">
             {navigation.find(item => isActive(item.href))?.name || 'Dashboard'}
           </h1>
         </header>
