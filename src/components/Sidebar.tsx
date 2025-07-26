@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { FiCalendar, FiShoppingBag, FiVideo, FiUser, FiSettings, FiLogOut, FiPackage, FiSun, FiMoon, FiHome, FiMenu } from "react-icons/fi";
+import { FiCalendar, FiShoppingBag, FiVideo, FiUser, FiSettings, FiLogOut, FiPackage, FiSun, FiMoon, FiHome, FiMenu, FiMessageCircle } from "react-icons/fi";
 import { Logo } from "./Logo";
 import { logout } from "@/lib/auth-service";
 import { useState, memo, useCallback } from "react";
@@ -90,6 +90,13 @@ export const Sidebar = memo(function Sidebar() {
           active={pathname.startsWith("/dashboard/functions")}
         >
           Funções
+        </SidebarLink>
+        <SidebarLink
+          href="/dashboard/support"
+          icon={<FiMessageCircle />}
+          active={pathname.startsWith("/dashboard/support")}
+        >
+          Chat
         </SidebarLink>
         {/* Outros links existentes, exceto Agendamentos duplicado */}
         <SidebarLink
