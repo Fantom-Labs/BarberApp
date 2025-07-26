@@ -1,6 +1,6 @@
 "use client";
 
-import { FiCalendar, FiShoppingBag, FiVideo, FiUsers, FiDollarSign, FiTrendingUp, FiAward, FiScissors } from "react-icons/fi";
+import { FiCalendar, FiShoppingBag, FiVideo, FiUsers, FiDollarSign, FiTrendingUp, FiAward, FiScissors, FiStar } from "react-icons/fi";
 import Link from "next/link";
 import { useState, useEffect, useCallback } from "react";
 import AppointmentModal from "@/components/AppointmentModal";
@@ -70,101 +70,68 @@ export default function DashboardPage() {
         <h1 className="text-2xl font-bold">Bem-vindo a sua barbearia</h1>
       </div>
 
-      {/* Principais Indicadores */}
-      <div className="bg-white dark:bg-dark-card rounded-lg shadow-md p-4">
-        <div className="flex justify-between items-center mb-3">
-          <div className="flex items-center">
-            <h2 className="text-lg font-semibold mr-3 dark:text-dark-text">Indicadores</h2>
-            <div className="flex bg-gray-100 dark:bg-dark-bg rounded-md p-1">
-              <button
-                onClick={() => setPeriodFilter("today")}
-                className={`px-3 py-1 text-xs font-medium rounded-md transition-colors ${periodFilter === "today" ? "bg-white dark:bg-dark-surface shadow-sm" : "text-gray-600 dark:text-dark-text"}`}
-              >
-                Hoje
-              </button>
-              <button
-                onClick={() => setPeriodFilter("month")}
-                className={`px-3 py-1 text-xs font-medium rounded-md transition-colors ${periodFilter === "month" ? "bg-white dark:bg-dark-surface shadow-sm" : "text-gray-600 dark:text-dark-text"}`}
-              >
-                Mês
-              </button>
+      {/* Cards de Estatísticas */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+        <div className="bg-white dark:bg-dark-bg-secondary rounded-lg shadow-sm p-4 border border-gray-200 dark:border-dark-border">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm font-medium text-gray-600 dark:text-dark-text-tertiary">Vendas Hoje</p>
+              <p className="text-2xl font-bold text-gray-900 dark:text-dark-text-primary">R$ 1.250</p>
+            </div>
+            <div className="p-2 bg-cakto-green bg-opacity-10 rounded-lg">
+              <FiTrendingUp className="h-6 w-6 text-cakto-green" />
             </div>
           </div>
-          <Link
-            href="/dashboard/functions/reports"
-            className="text-primary hover:text-primary-dark text-xs md:text-sm flex items-center"
-          >
-            <span>Ver mais</span>
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 md:h-4 md:w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </Link>
+          <p className="text-xs text-green-600 dark:text-cakto-emerald mt-1">+12% vs ontem</p>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div className="p-3 border border-gray-100 dark:border-gray-700 rounded-lg">
-            <div className="flex justify-between items-start">
-              <div>
-                <p className="text-xs font-medium text-gray-500 dark:text-gray-400">Faturamento</p>
-                <p className="text-xl font-semibold mt-1">{periodFilter === "today" ? "R$ 850" : "R$ 5.240"}</p>
-                <p className="text-xs text-green-500 mt-1">{periodFilter === "today" ? "+10% vs ontem" : "+15% este mês"}</p>
-              </div>
-              <div className="p-2 rounded-lg bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400">
-                <FiDollarSign className="h-5 w-5" />
-              </div>
-            </div>
-          </div>
 
-          <div className="p-3 border border-gray-100 dark:border-gray-700 rounded-lg">
-            <div className="flex justify-between items-start">
-              <div>
-                <p className="text-xs font-medium text-gray-500 dark:text-gray-400">Ticket Médio</p>
-                <p className="text-xl font-semibold mt-1">{periodFilter === "today" ? "R$ 90,00" : "R$ 85,00"}</p>
-                <p className="text-xs text-green-500 mt-1">{periodFilter === "today" ? "+8% vs ontem" : "+5% este mês"}</p>
-              </div>
-              <div className="p-2 rounded-lg bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400">
-                <FiDollarSign className="h-5 w-5" />
-              </div>
+        <div className="bg-white dark:bg-dark-bg-secondary rounded-lg shadow-sm p-4 border border-gray-200 dark:border-dark-border">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm font-medium text-gray-600 dark:text-dark-text-tertiary">Agendamentos</p>
+              <p className="text-2xl font-bold text-gray-900 dark:text-dark-text-primary">24</p>
+            </div>
+            <div className="p-2 bg-cakto-teal bg-opacity-10 rounded-lg">
+              <FiCalendar className="h-6 w-6 text-cakto-teal" />
             </div>
           </div>
+          <p className="text-xs text-green-600 dark:text-cakto-emerald mt-1">+3 vs ontem</p>
+        </div>
 
-          <div className="p-3 border border-gray-100 dark:border-gray-700 rounded-lg">
-            <div className="flex justify-between items-start">
-              <div>
-                <p className="text-xs font-medium text-gray-500 dark:text-gray-400">Atendimentos</p>
-                <p className="text-xl font-semibold mt-1">{periodFilter === "today" ? "12" : "82"}</p>
-                <p className="text-xs text-green-500 mt-1">{periodFilter === "today" ? "+2 vs ontem" : "+8% este mês"}</p>
-              </div>
-              <div className="p-2 rounded-lg bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400">
-                <FiCalendar className="h-5 w-5" />
-              </div>
+        <div className="bg-white dark:bg-dark-bg-secondary rounded-lg shadow-sm p-4 border border-gray-200 dark:border-dark-border">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm font-medium text-gray-600 dark:text-dark-text-tertiary">Clientes Ativos</p>
+              <p className="text-2xl font-bold text-gray-900 dark:text-dark-text-primary">156</p>
+            </div>
+            <div className="p-2 bg-cakto-purple bg-opacity-10 rounded-lg">
+              <FiUsers className="h-6 w-6 text-cakto-purple" />
             </div>
           </div>
+          <p className="text-xs text-green-600 dark:text-cakto-emerald mt-1">+8 este mês</p>
+        </div>
 
-          <div className="p-3 border border-gray-100 dark:border-gray-700 rounded-lg">
-            <div className="flex justify-between items-start">
-              <div>
-                <p className="text-xs font-medium text-gray-500 dark:text-gray-400">Novos Clientes</p>
-                <p className="text-xl font-semibold mt-1">{periodFilter === "today" ? "3" : "19"}</p>
-                <p className="text-xs text-green-500 mt-1">{periodFilter === "today" ? "+1 vs ontem" : "+12% este mês"}</p>
-              </div>
-              <div className="p-2 rounded-lg bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400">
-                <FiUsers className="h-5 w-5" />
-              </div>
+        <div className="bg-white dark:bg-dark-bg-secondary rounded-lg shadow-sm p-4 border border-gray-200 dark:border-dark-border">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm font-medium text-gray-600 dark:text-dark-text-tertiary">Avaliação</p>
+              <p className="text-2xl font-bold text-gray-900 dark:text-dark-text-primary">4.8</p>
+            </div>
+            <div className="p-2 bg-cakto-orange bg-opacity-10 rounded-lg">
+              <FiStar className="h-6 w-6 text-cakto-orange" />
             </div>
           </div>
+          <p className="text-xs text-green-600 dark:text-cakto-emerald mt-1">+0.2 este mês</p>
         </div>
       </div>
 
-      {/* Banner de Propagandas */}
-      {/* Slider de produtos removido conforme solicitado */}
-
       {/* Ranking */}
-      <div className="bg-white dark:bg-dark-card rounded-lg shadow-md p-4">
+      <div className="bg-white dark:bg-dark-bg-secondary rounded-lg shadow-sm p-4 border border-gray-200 dark:border-dark-border">
         <div className="flex justify-between items-center mb-3">
-          <h2 className="text-lg font-semibold dark:text-dark-text">Ranking</h2>
+          <h2 className="text-lg font-semibold text-gray-900 dark:text-dark-text-primary">Ranking</h2>
           <Link
             href="/dashboard/functions/reports"
-            className="text-primary hover:text-primary-dark text-sm flex items-center"
+            className="text-cakto-green hover:text-cakto-teal text-sm flex items-center"
           >
             <span>Ver mais</span>
             <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -226,13 +193,13 @@ export default function DashboardPage() {
 
       {/* Acesso Rápido */}
       <div>
-        <h2 className="text-xl font-semibold mb-4 dark:text-dark-text">Acesso Rápido</h2>
+        <h2 className="text-xl font-semibold mb-4">Acesso Rápido</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {quickAccess.map((item, index) => (
             <button
               key={index}
               onClick={item.onClick}
-              className="bg-white dark:bg-dark-card rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow text-left w-full"
+              className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow text-left w-full"
             >
               <div className="flex items-center space-x-3">
                 <div className="p-2 rounded-lg bg-primary/10 text-primary">
@@ -246,8 +213,8 @@ export default function DashboardPage() {
       </div>
 
       {/* Atividades Recentes */}
-      <div className="bg-white dark:bg-dark-card rounded-lg shadow-md p-4 mt-8">
-        <h2 className="text-xl font-semibold mb-4 dark:text-dark-text">Atividades Recentes</h2>
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 mt-8">
+        <h2 className="text-xl font-semibold mb-4">Atividades Recentes</h2>
         <div className="space-y-4">
           {[1, 2, 3].map((item) => (
             <div key={item} className="flex items-start space-x-3 p-2 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-lg">

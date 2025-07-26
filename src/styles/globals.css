@@ -4,32 +4,49 @@
 
 @layer base {
   body {
-    @apply bg-white dark:bg-dark-bg text-gray-900 dark:text-dark-text;
+    @apply bg-white dark:bg-dark-bg-primary text-gray-900 dark:text-dark-text-primary;
   }
 }
 
 @layer components {
   .btn-primary {
-    @apply bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded transition-colors;
+    @apply bg-cakto-green hover:bg-cakto-teal text-white font-bold py-2 px-4 rounded transition-colors;
   }
 
   .input-field {
-    @apply w-full p-2 border border-gray-300 dark:border-dark-border rounded focus:outline-none focus:ring-2 focus:ring-orange-500 dark:bg-dark-surface dark:text-dark-text;
+    @apply w-full p-2 border border-gray-300 dark:border-dark-border rounded focus:outline-none focus:ring-2 focus:ring-cakto-green bg-white dark:bg-dark-bg-secondary text-gray-900 dark:text-dark-text-primary;
   }
 
   .form-label {
-    @apply block text-sm font-medium mb-1 dark:text-dark-text;
+    @apply block text-sm font-medium mb-1 text-gray-700 dark:text-dark-text-secondary;
   }
 
   .link {
-    @apply text-orange-500 hover:text-orange-600 transition-colors;
+    @apply text-cakto-green hover:text-cakto-teal transition-colors;
   }
 
-  .card {
-    @apply bg-white dark:bg-dark-card border border-gray-200 dark:border-dark-border rounded-lg shadow-sm;
+  /* Componentes do tema escuro */
+  .dark-card {
+    @apply bg-dark-bg-secondary border border-dark-border rounded-lg shadow-sm;
   }
 
-  .sidebar {
-    @apply bg-white dark:bg-dark-surface border-r border-gray-200 dark:border-dark-border;
+  .dark-sidebar {
+    @apply bg-dark-bg-primary border-r border-dark-border;
+  }
+
+  .dark-nav-item {
+    @apply text-dark-text-secondary hover:text-dark-text-primary hover:bg-dark-bg-secondary;
+  }
+
+  .dark-nav-item-active {
+    @apply text-cakto-green bg-dark-bg-secondary;
+  }
+
+  .dark-button {
+    @apply bg-dark-bg-secondary hover:bg-dark-bg-tertiary text-dark-text-primary border border-dark-border;
+  }
+
+  .dark-button-primary {
+    @apply bg-cakto-green hover:bg-cakto-teal text-white;
   }
 }

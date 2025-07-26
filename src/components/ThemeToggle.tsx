@@ -17,16 +17,20 @@ export function ThemeToggle() {
     return null;
   }
 
+  const toggleTheme = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+  };
+
   return (
     <button
-      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-      className="p-2 rounded-full bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors"
+      onClick={toggleTheme}
+      className="p-2 rounded-full bg-gray-200 hover:bg-gray-300 dark:bg-dark-bg-secondary dark:hover:bg-dark-bg-tertiary transition-colors"
       aria-label="Toggle theme"
     >
       {theme === "dark" ? (
-        <FiSun className="h-5 w-5 text-yellow-500" />
+        <FiSun className="h-5 w-5 text-cakto-orange" />
       ) : (
-        <FiMoon className="h-5 w-5 text-gray-700" />
+        <FiMoon className="h-5 w-5 text-cakto-gray-text" />
       )}
     </button>
   );

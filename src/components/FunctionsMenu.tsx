@@ -142,58 +142,48 @@ export function FunctionsMenu({ onClose, className = "" }: FunctionsMenuProps) {
   ];
 
   return (
-    <div className={`py-2 bg-white dark:bg-dark-surface rounded-md shadow-lg ${className}`}>
-      <div className="max-h-[calc(100vh-200px)] overflow-y-auto">
-        {menuItems.map((item) => (
-          item.onClick ? (
-            <button
-              key={item.name}
-              onClick={item.onClick}
-              className="w-full flex items-center space-x-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-dark-bg transition-colors text-left"
-            >
-              <span className="text-primary">{item.icon}</span>
-              <span className="text-gray-700 dark:text-dark-text">{item.name}</span>
-            </button>
-          ) : (
-            <Link
-              key={item.name}
-              href={item.href!}
-              onClick={onClose}
-              className="flex items-center space-x-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-dark-bg transition-colors text-left w-full"
-            >
-              <span className="text-primary">{item.icon}</span>
-              <span className="text-gray-700 dark:text-dark-text">{item.name}</span>
-            </Link>
-          )
-        ))}
-
-        {/* Tema */}
-        {/* Removido botão de tema claro/escuro */}
-
-        {/* Logout */}
-        <button
-          onClick={handleLogout}
-          disabled={isLoggingOut}
-          className="w-full flex items-center space-x-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-dark-bg transition-colors text-left disabled:opacity-50"
-        >
-          <span className="text-primary">
-            <FiLogOut className="h-5 w-5" />
-          </span>
-          <span className="text-gray-700 dark:text-dark-text">
-            {isLoggingOut ? "Saindo..." : "Sair"}
-          </span>
-        </button>
+    <div className={`bg-white dark:bg-dark-bg-primary border-r border-gray-200 dark:border-dark-border h-full flex flex-col ${className}`}>
+      {/* Header */}
+      <div className="p-4 border-b border-gray-200 dark:border-dark-border">
+        <div className="flex items-center space-x-3">
+          <div className="w-10 h-10 bg-cakto-green rounded-lg flex items-center justify-center">
+            <FiScissors className="h-6 w-6 text-white" />
+          </div>
+          <div>
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-dark-text-primary">BarberApp</h2>
+            <p className="text-sm text-gray-500 dark:text-dark-text-tertiary">Dashboard</p>
+          </div>
+        </div>
       </div>
 
-      {/* Modal de Novo Agendamento - Componente Reutilizável */}
-      <AppointmentModal
-        isOpen={isModalOpen}
-        onClose={closeModal}
-        onSave={handleSaveAppointment}
-        barbers={barbers}
-        services={services}
-        clients={clients}
-      />
+      {/* Menu Items */}
+      <nav className="flex-1 p-4 space-y-2">
+        {menuItems.map((item) => (
+          <Link
+            key={item.name}
+            href={item.href}
+            className={`flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+              router.pathname === item.href || router.pathname.startsWith(item.href + "/")
+                ? "bg-cakto-green text-white"
+                : "text-gray-700 dark:text-dark-text-secondary hover:text-gray-900 dark:hover:text-dark-text-primary hover:bg-gray-100 dark:hover:bg-dark-bg-secondary"
+            }`}
+          >
+            {item.icon}
+            <span>{item.name}</span>
+          </Link>
+        ))}
+      </nav>
+
+      {/* Footer */}
+      <div className="p-4 border-t border-gray-200 dark:border-dark-border">
+        <button
+          onClick={handleLogout}
+          className="flex items-center space-x-3 w-full px-3 py-2 rounded-lg text-sm font-medium text-gray-700 dark:text-dark-text-secondary hover:text-gray-900 dark:hover:text-dark-text-primary hover:bg-gray-100 dark:hover:bg-dark-bg-secondary transition-colors"
+        >
+          <FiLogOut className="h-5 w-5" />
+          <span>Sair</span>
+        </button>
+      </div>
     </div>
   );
 }
