@@ -145,18 +145,6 @@ export function FunctionsMenu({ onClose, className = "" }: FunctionsMenuProps) {
 
   return (
     <div className={`bg-white dark:bg-dark-bg-primary border-r border-gray-200 dark:border-dark-border h-full flex flex-col ${className}`}>
-      {/* Header */}
-      <div className="p-4 border-b border-gray-200 dark:border-dark-border">
-        <div className="flex items-center space-x-3">
-          <div className="w-10 h-10 bg-cakto-green rounded-lg flex items-center justify-center">
-            <FiScissors className="h-6 w-6 text-white" />
-          </div>
-          <div>
-            <h2 className="text-lg font-semibold text-gray-900 dark:text-dark-text-primary">BarberApp</h2>
-          </div>
-        </div>
-      </div>
-
       {/* Menu Items */}
       <nav className="flex-1 p-4 space-y-2">
         {menuItems.map((item) =>
