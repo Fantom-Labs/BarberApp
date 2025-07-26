@@ -146,7 +146,7 @@ export function FunctionsMenu({ onClose, className = "" }: FunctionsMenuProps) {
   return (
     <div className={`bg-white dark:bg-dark-bg-primary border-r border-gray-200 dark:border-dark-border h-full flex flex-col ${className}`}>
       {/* Menu Items */}
-      <nav className="flex-1 p-4 space-y-2">
+      <nav className="flex-1 p-4 space-y-2 mt-4">
         {menuItems.map((item) =>
           item.href ? (
             <Link
