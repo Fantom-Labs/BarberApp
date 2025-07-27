@@ -140,7 +140,6 @@ export function FunctionsMenu({ onClose, className = "" }: FunctionsMenuProps) {
       href: "/dashboard/functions",
       icon: <FiMenu className="h-5 w-5" />,
     },
-    // Removido o item Configurações
   ];
 
   return (
@@ -165,15 +164,15 @@ export function FunctionsMenu({ onClose, className = "" }: FunctionsMenuProps) {
         )}
       </nav>
 
-      {/* Footer */}
+      {/* Logout Button */}
       <div className="p-4 border-t border-gray-200 dark:border-dark-border">
-        <button
-          onClick={handleLogout}
-          className="flex items-center space-x-3 w-full px-3 py-2 rounded-lg text-sm font-medium text-gray-700 dark:text-dark-text-secondary hover:text-gray-900 dark:hover:text-dark-text-primary hover:bg-gray-100 dark:hover:bg-dark-bg-secondary transition-colors"
+        <Link
+          href="/logout"
+          className="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors text-gray-700 dark:text-dark-text-secondary hover:text-gray-900 dark:hover:text-dark-text-primary hover:bg-gray-100 dark:hover:bg-dark-bg-secondary"
         >
           <FiLogOut className="h-5 w-5" />
           <span>Sair</span>
-        </button>
+        </Link>
       </div>
     </div>
   );
