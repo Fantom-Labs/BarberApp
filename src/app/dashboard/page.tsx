@@ -87,33 +87,33 @@ export default function DashboardPage() {
 
         <div className="bg-white dark:bg-dark-bg-secondary rounded-lg shadow-sm p-4 border border-gray-200 dark:border-dark-border">
           <div className="flex items-center justify-between">
-            <div>
+              <div>
               <p className="text-sm font-medium text-gray-600 dark:text-dark-text-tertiary">Agendamentos</p>
               <p className="text-2xl font-bold text-gray-900 dark:text-dark-text-primary">24</p>
-            </div>
+              </div>
             <div className="p-2 bg-cakto-teal bg-opacity-10 rounded-lg">
               <FiCalendar className="h-6 w-6 text-cakto-teal" />
             </div>
           </div>
           <p className="text-xs text-green-600 dark:text-cakto-emerald mt-1">+3 vs ontem</p>
-        </div>
+          </div>
 
         <div className="bg-white dark:bg-dark-bg-secondary rounded-lg shadow-sm p-4 border border-gray-200 dark:border-dark-border">
           <div className="flex items-center justify-between">
-            <div>
+              <div>
               <p className="text-sm font-medium text-gray-600 dark:text-dark-text-tertiary">Clientes Ativos</p>
               <p className="text-2xl font-bold text-gray-900 dark:text-dark-text-primary">156</p>
-            </div>
+              </div>
             <div className="p-2 bg-cakto-purple bg-opacity-10 rounded-lg">
               <FiUsers className="h-6 w-6 text-cakto-purple" />
             </div>
           </div>
           <p className="text-xs text-green-600 dark:text-cakto-emerald mt-1">+8 este mês</p>
-        </div>
+          </div>
 
         <div className="bg-white dark:bg-dark-bg-secondary rounded-lg shadow-sm p-4 border border-gray-200 dark:border-dark-border">
           <div className="flex items-center justify-between">
-            <div>
+              <div>
               <p className="text-sm font-medium text-gray-600 dark:text-dark-text-tertiary">Avaliação</p>
               <p className="text-2xl font-bold text-gray-900 dark:text-dark-text-primary">4.8</p>
             </div>
@@ -127,18 +127,18 @@ export default function DashboardPage() {
 
       {/* Ranking */}
       <div className="bg-white dark:bg-dark-bg-secondary rounded-lg shadow-sm p-4 border border-gray-200 dark:border-dark-border">
-        <div className="flex justify-between items-center mb-3">
+          <div className="flex justify-between items-center mb-3">
           <h2 className="text-lg font-semibold text-gray-900 dark:text-dark-text-primary">Ranking</h2>
-          <Link
-            href="/dashboard/functions/reports"
+            <Link
+              href="/dashboard/functions/reports"
             className="text-cakto-green hover:text-cakto-teal text-sm flex items-center"
-          >
-            <span>Ver mais</span>
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </Link>
-        </div>
+            >
+              <span>Ver mais</span>
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </Link>
+          </div>
 
           {/* Pódio Redesenhado - Estilo Horizontal */}
           <div className="flex items-center justify-center h-24 relative mb-2">
@@ -158,16 +158,16 @@ export default function DashboardPage() {
               </div>
 
               {/* Primeiro Lugar */}
-              <div className="w-1/3 h-24 bg-yellow-400 rounded-t-md flex flex-col items-center justify-end pb-1 relative">
+              <div className="w-1/3 h-24 rounded-t-md flex flex-col items-center justify-end pb-1 relative" style={{ backgroundColor: '#36B37E' }}>
                 <div className="absolute -top-12 w-full flex justify-center">
                   <div className="relative">
-                    <div className="w-14 h-14 rounded-full bg-gray-200 dark:bg-gray-600 overflow-hidden border-2 border-yellow-300 flex items-center justify-center">
-                      <FiAward className="h-8 w-8 text-yellow-500" />
+                    <div className="w-14 h-14 rounded-full bg-gray-200 dark:bg-gray-600 overflow-hidden border-2 flex items-center justify-center" style={{ borderColor: '#36B37E' }}>
+                      <FiAward className="h-8 w-8" style={{ color: '#36B37E' }} />
                     </div>
                   </div>
                 </div>
                 <p className="font-bold text-white text-sm">Rafael</p>
-                <p className="text-sm font-bold text-yellow-100">9.5</p>
+                <p className="text-sm font-bold text-white">9.5</p>
               </div>
 
               {/* Terceiro Lugar */}
@@ -188,8 +188,8 @@ export default function DashboardPage() {
           {/* Legenda */}
           <div className="text-center mt-4 text-xs text-gray-500 dark:text-gray-400">
             Ranking baseado na média de desempenho mensal
-          </div>
         </div>
+      </div>
 
       {/* Acesso Rápido */}
       <div>

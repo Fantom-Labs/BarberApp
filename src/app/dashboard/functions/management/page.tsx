@@ -494,14 +494,14 @@ export default function ReportsPage() {
                 {/* Primeiro Lugar */}
                 <div className="flex flex-col items-center mx-6">
                   <div className="relative">
-                    <div className="w-24 h-24 rounded-full bg-gray-200 dark:bg-gray-700 overflow-hidden border-2 border-yellow-400">
+                    <div className="w-24 h-24 rounded-full bg-gray-200 dark:bg-gray-700 overflow-hidden border-2 flex items-center justify-center" style={{ borderColor: '#36B37E' }}>
                       {/* Imagem do barbeiro */}
                     </div>
-                    <div className="absolute -top-2 -right-1 bg-yellow-400 rounded-full w-10 h-10 flex items-center justify-center">
+                    <div className="absolute -top-2 -right-1 rounded-full w-10 h-10 flex items-center justify-center" style={{ backgroundColor: '#36B37E' }}>
                       <FiAward className="h-6 w-6 text-white" />
                     </div>
                   </div>
-                  <div className="h-40 w-28 bg-yellow-400 rounded-t-lg mt-2 flex items-center justify-center">
+                  <div className="h-40 w-28 rounded-t-lg mt-2 flex items-center justify-center" style={{ backgroundColor: '#36B37E' }}>
                     <div className="text-center">
                       <p className="font-bold text-white text-lg">{barbersData[0].name}</p>
                       <p className="text-white font-medium">{barbersData[0].rating}</p>
@@ -547,7 +547,7 @@ export default function ReportsPage() {
                       <tr key={barber.id} className={index < 3 ? "bg-gray-50 dark:bg-gray-800" : ""}>
                         <td className="px-4 py-3 whitespace-nowrap">
                           <div className="flex items-center">
-                            {index === 0 && <div className="w-6 h-6 rounded-full bg-yellow-400 flex items-center justify-center mr-2"><span className="text-xs font-bold text-white">1</span></div>}
+                            {index === 0 && <div className="w-6 h-6 rounded-full flex items-center justify-center mr-2" style={{ backgroundColor: '#36B37E' }}><span className="text-xs font-bold text-white">1</span></div>}
                             {index === 1 && <div className="w-6 h-6 rounded-full bg-gray-300 dark:bg-gray-600 flex items-center justify-center mr-2"><span className="text-xs font-bold">2</span></div>}
                             {index === 2 && <div className="w-6 h-6 rounded-full bg-amber-700 flex items-center justify-center mr-2"><span className="text-xs font-bold text-white">3</span></div>}
                             {index > 2 && <span className="font-medium">{index + 1}</span>}
@@ -580,8 +580,11 @@ export default function ReportsPage() {
                     {barbersData.map((barber, index) => (
                       <div key={barber.id} className="flex-1 flex flex-col items-center">
                         <div
-                          className={`w-full ${index === 0 ? 'bg-yellow-400' : index === 1 ? 'bg-gray-300 dark:bg-gray-600' : index === 2 ? 'bg-amber-700' : 'bg-blue-500'} rounded-t-sm`}
-                          style={{ height: `${(barber.metrics.revenue / barbersData[0].metrics.revenue) * 100}%` }}
+                          className={`w-full ${index === 1 ? 'bg-gray-300 dark:bg-gray-600' : index === 2 ? 'bg-amber-700' : 'bg-blue-500'} rounded-t-sm`}
+                          style={{
+                            height: `${(barber.metrics.revenue / barbersData[0].metrics.revenue) * 100}%`,
+                            backgroundColor: index === 0 ? '#36B37E' : undefined
+                          }}
                         ></div>
                         <p className="text-xs mt-2">{barber.name}</p>
                         <p className="text-xs font-medium">R$ {barber.metrics.revenue}</p>
@@ -598,8 +601,11 @@ export default function ReportsPage() {
                     {barbersData.map((barber, index) => (
                       <div key={barber.id} className="flex-1 flex flex-col items-center">
                         <div
-                          className={`w-full ${index === 0 ? 'bg-yellow-400' : index === 1 ? 'bg-gray-300 dark:bg-gray-600' : index === 2 ? 'bg-amber-700' : 'bg-green-500'} rounded-t-sm`}
-                          style={{ height: `${(barber.metrics.appointments / barbersData[0].metrics.appointments) * 100}%` }}
+                          className={`w-full ${index === 1 ? 'bg-gray-300 dark:bg-gray-600' : index === 2 ? 'bg-amber-700' : 'bg-green-500'} rounded-t-sm`}
+                          style={{
+                            height: `${(barber.metrics.appointments / barbersData[0].metrics.appointments) * 100}%`,
+                            backgroundColor: index === 0 ? '#36B37E' : undefined
+                          }}
                         ></div>
                         <p className="text-xs mt-2">{barber.name}</p>
                         <p className="text-xs font-medium">{barber.metrics.appointments}</p>
