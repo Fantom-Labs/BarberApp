@@ -20,11 +20,11 @@ export function SplashScreen() {
   return (
     <div className="fixed inset-0 bg-white dark:bg-gray-900 flex flex-col items-center justify-center z-50">
       <div className="animate-pulse">
-        <Image 
-          src="/images/logo.svg" 
-          alt="DIMY Barber Logo" 
-          width={120} 
-          height={120} 
+        <Image
+          src="/logo.svg"
+          alt="DIMY Barber Logo"
+          width={120}
+          height={120}
           className="mb-4"
         />
       </div>

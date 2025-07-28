@@ -11,7 +11,7 @@ export const Logo = memo(function Logo({ showText = true }: { showText?: boolean
       {showText ? (
         <div className="flex items-center">
           <Image
-            src="/images/logo.svg"
+            src="/logo.svg"
             alt="Logo"
             width={50}
             height={50}
@@ -24,7 +24,7 @@ export const Logo = memo(function Logo({ showText = true }: { showText?: boolean
         </div>
       ) : (
         <Image
-          src="/images/logo.svg"
+          src="/logo.svg"
           alt="Logo"
           width={50}
           height={50}

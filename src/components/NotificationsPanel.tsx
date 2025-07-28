@@ -221,8 +221,8 @@ export function NotificationsPanel() {
                 className="w-full text-sm text-cakto-green hover:text-cakto-teal transition-colors"
               >
                 Limpar todas
-              </button>
-            </div>
+            </button>
+          </div>
           )}
         </div>
       )}

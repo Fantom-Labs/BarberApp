@@ -38,9 +38,11 @@ export default function DashboardLayout({
               </button>
               {/* Logo */}
               <div className="flex items-center space-x-2">
-                <div className="w-6 h-6 bg-cakto-green rounded-lg flex items-center justify-center">
-                  <FiScissors className="h-4 w-4 text-white" />
-                </div>
+                <img
+                  src="/logo.svg"
+                  alt="BarberApp Logo"
+                  className="w-6 h-6"
+                />
                 <span className="text-base font-semibold text-gray-900 dark:text-dark-text-primary">BarberApp</span>
               </div>
             </div>

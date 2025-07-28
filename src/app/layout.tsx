@@ -13,8 +13,8 @@ export const metadata: Metadata = {
   title: "DIMY Barber",
   description: "Sistema de agendamento e gestão para barbearias",
   icons: {
-    icon: "/images/logo.svg",
-    apple: "/images/logo.svg",
+    icon: "/logo.svg",
+    apple: "/logo.svg",
   }
 };
 

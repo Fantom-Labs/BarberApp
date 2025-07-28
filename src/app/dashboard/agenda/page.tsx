@@ -234,71 +234,34 @@ export default function AgendaPage() {
           {/* Renderizar todos os dias do mês */}
           {daysInMonth.map((day, idx) => {
             const dayStr = day.toISOString().split('T')[0];
-            return (
+              return (
               <div key={dayStr} className="bg-white dark:bg-gray-800 rounded-lg shadow p-2 min-h-[120px] flex flex-col">
                 <div className="font-semibold text-center mb-2">{day.getDate()}</div>
-                <div className="flex-1 flex flex-col gap-2">
-                  {(selectedBarber ? appointments.filter(a => a.barber === selectedBarber) : appointments)
+                  <div className="flex-1 flex flex-col gap-2">
+                    {(selectedBarber ? appointments.filter(a => a.barber === selectedBarber) : appointments)
                     .filter(a => a.date === dayStr)
-                    .map(a => (
-                      <div
-                        key={a.id}
-                        className={`rounded-md px-2 py-1 text-white text-xs font-medium shadow ${statusColors[getStatus(a)]}`}
-                        title={`${a.client} - ${a.service}`}
-                      >
-                        <div className="flex justify-between items-center">
-                          <span>{a.time}</span>
-                          <span className="capitalize">{getStatus(a)}</span>
+                      .map(a => (
+                        <div
+                          key={a.id}
+                          className={`rounded-md px-2 py-1 text-white text-xs font-medium shadow ${statusColors[getStatus(a)]}`}
+                          title={`${a.client} - ${a.service}`}
+                        >
+                          <div className="flex justify-between items-center">
+                            <span>{a.time}</span>
+                            <span className="capitalize">{getStatus(a)}</span>
+                          </div>
+                          <div>{a.client}</div>
+                          <div className="text-[10px]">{a.service}</div>
                         </div>
-                        <div>{a.client}</div>
-                        <div className="text-[10px]">{a.service}</div>
-                      </div>
-                    ))}
+                      ))}
+                  </div>
                 </div>
-              </div>
-            );
+              );
           })}
         </div>
       </div>
 
-      {/* Estatísticas do Dia */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4">
-          <div className="flex items-center space-x-3">
-            <div className="p-2 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400">
-              <FiCalendar className="h-5 w-5" />
-            </div>
-            <div>
-              <p className="text-sm text-gray-500 dark:text-gray-400">Total de Agendamentos</p>
-              <p className="text-xl font-semibold">{appointments.length}</p>
-            </div>
-          </div>
-        </div>
 
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4">
-          <div className="flex items-center space-x-3">
-            <div className="p-2 rounded-full bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400">
-              <FiClock className="h-5 w-5" />
-            </div>
-            <div>
-              <p className="text-sm text-gray-500 dark:text-gray-400">Tempo Total</p>
-              <p className="text-xl font-semibold">3h 35min</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4">
-          <div className="flex items-center space-x-3">
-            <div className="p-2 rounded-full bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400">
-              <FiUser className="h-5 w-5" />
-            </div>
-            <div>
-              <p className="text-sm text-gray-500 dark:text-gray-400">Clientes Atendidos</p>
-              <p className="text-xl font-semibold">5</p>
-            </div>
-          </div>
-        </div>
-      </div>
 
       {/* Modal de Novo Agendamento - Componente Reutilizável */}
       <AppointmentModal
