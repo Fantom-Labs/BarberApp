@@ -476,17 +476,17 @@ export default function ReportsPage() {
                 {/* Segundo Lugar */}
                 <div className="flex flex-col items-center mx-6">
                   <div className="relative">
-                    <div className="w-20 h-20 rounded-full bg-gray-200 dark:bg-gray-700 overflow-hidden border-2 flex items-center justify-center" style={{ borderColor: '#B45309' }}>
+                    <div className="w-20 h-20 rounded-full bg-gray-200 dark:bg-gray-700 overflow-hidden border-2 border-gray-300 dark:border-gray-600">
                       {/* Imagem do barbeiro */}
                     </div>
-                    <div className="absolute -top-1 -right-1 rounded-full w-8 h-8 flex items-center justify-center" style={{ backgroundColor: '#B45309' }}>
-                      <span className="text-sm font-bold text-white">2</span>
+                    <div className="absolute -top-1 -right-1 bg-gray-300 dark:bg-gray-600 rounded-full w-8 h-8 flex items-center justify-center">
+                      <span className="text-sm font-bold">2</span>
                     </div>
                   </div>
-                  <div className="h-32 w-24 rounded-t-lg mt-2 flex items-center justify-center" style={{ backgroundColor: '#B45309' }}>
+                  <div className="h-32 w-24 bg-gray-300 dark:bg-gray-700 rounded-t-lg mt-2 flex items-center justify-center">
                     <div className="text-center">
-                      <p className="font-medium text-white">{barbersData[1].name}</p>
-                      <p className="text-sm text-white">{barbersData[1].rating}</p>
+                      <p className="font-medium">{barbersData[1].name}</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">{barbersData[1].rating}</p>
                     </div>
                   </div>
                 </div>
@@ -512,17 +512,17 @@ export default function ReportsPage() {
                 {/* Terceiro Lugar */}
                 <div className="flex flex-col items-center mx-6">
                   <div className="relative">
-                    <div className="w-16 h-16 rounded-full bg-gray-200 dark:bg-gray-700 overflow-hidden border-2 border-amber-700">
+                    <div className="w-16 h-16 rounded-full bg-gray-200 dark:bg-gray-700 overflow-hidden border-2 border-gray-300 dark:border-gray-600">
                       {/* Imagem do barbeiro */}
                     </div>
-                    <div className="absolute -top-1 -right-1 bg-amber-700 rounded-full w-7 h-7 flex items-center justify-center">
-                      <span className="text-xs font-bold text-white">3</span>
+                    <div className="absolute -top-1 -right-1 bg-gray-300 dark:bg-gray-600 rounded-full w-7 h-7 flex items-center justify-center">
+                      <span className="text-xs font-bold text-gray-700 dark:text-gray-300">3</span>
                     </div>
                   </div>
-                  <div className="h-24 w-20 bg-amber-700 rounded-t-lg mt-2 flex items-center justify-center">
+                  <div className="h-24 w-20 bg-gray-300 dark:bg-gray-700 rounded-t-lg mt-2 flex items-center justify-center">
                     <div className="text-center">
-                      <p className="font-medium text-white">{barbersData[2].name}</p>
-                      <p className="text-sm text-amber-200">{barbersData[2].rating}</p>
+                      <p className="font-medium text-gray-700 dark:text-gray-300">{barbersData[2].name}</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">{barbersData[2].rating}</p>
                     </div>
                   </div>
                 </div>
@@ -548,8 +548,8 @@ export default function ReportsPage() {
                         <td className="px-4 py-3 whitespace-nowrap">
                           <div className="flex items-center">
                             {index === 0 && <div className="w-6 h-6 rounded-full flex items-center justify-center mr-2" style={{ backgroundColor: '#36B37E' }}><span className="text-xs font-bold text-white">1</span></div>}
-                            {index === 1 && <div className="w-6 h-6 rounded-full flex items-center justify-center mr-2" style={{ backgroundColor: '#B45309' }}><span className="text-xs font-bold text-white">2</span></div>}
-                            {index === 2 && <div className="w-6 h-6 rounded-full bg-amber-700 flex items-center justify-center mr-2"><span className="text-xs font-bold text-white">3</span></div>}
+                            {index === 1 && <div className="w-6 h-6 rounded-full bg-gray-300 dark:bg-gray-600 flex items-center justify-center mr-2"><span className="text-xs font-bold">2</span></div>}
+                            {index === 2 && <div className="w-6 h-6 rounded-full bg-gray-300 dark:bg-gray-600 flex items-center justify-center mr-2"><span className="text-xs font-bold text-gray-700 dark:text-gray-300">3</span></div>}
                             {index > 2 && <span className="font-medium">{index + 1}</span>}
                           </div>
                         </td>
@@ -580,10 +580,10 @@ export default function ReportsPage() {
                     {barbersData.map((barber, index) => (
                       <div key={barber.id} className="flex-1 flex flex-col items-center">
                         <div
-                          className={`w-full ${index === 2 ? 'bg-amber-700' : 'bg-blue-500'} rounded-t-sm`}
+                          className={`w-full ${index === 1 ? 'bg-gray-300 dark:bg-gray-600' : index === 2 ? 'bg-gray-300 dark:bg-gray-600' : 'bg-blue-500'} rounded-t-sm`}
                           style={{
                             height: `${(barber.metrics.revenue / barbersData[0].metrics.revenue) * 100}%`,
-                            backgroundColor: index === 0 ? '#36B37E' : index === 1 ? '#B45309' : undefined
+                            backgroundColor: index === 0 ? '#36B37E' : undefined
                           }}
                         ></div>
                         <p className="text-xs mt-2">{barber.name}</p>
@@ -601,10 +601,10 @@ export default function ReportsPage() {
                     {barbersData.map((barber, index) => (
                       <div key={barber.id} className="flex-1 flex flex-col items-center">
                         <div
-                          className={`w-full ${index === 2 ? 'bg-amber-700' : 'bg-green-500'} rounded-t-sm`}
+                          className={`w-full ${index === 1 ? 'bg-gray-300 dark:bg-gray-600' : index === 2 ? 'bg-gray-300 dark:bg-gray-600' : 'bg-green-500'} rounded-t-sm`}
                           style={{
                             height: `${(barber.metrics.appointments / barbersData[0].metrics.appointments) * 100}%`,
-                            backgroundColor: index === 0 ? '#36B37E' : index === 1 ? '#B45309' : undefined
+                            backgroundColor: index === 0 ? '#36B37E' : undefined
                           }}
                         ></div>
                         <p className="text-xs mt-2">{barber.name}</p>

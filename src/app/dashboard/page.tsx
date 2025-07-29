@@ -145,16 +145,16 @@ export default function DashboardPage() {
             {/* Base do Pódio */}
             <div className="absolute bottom-0 w-full h-10 flex items-end">
               {/* Segundo Lugar */}
-              <div className="w-1/3 h-16 rounded-t-md flex flex-col items-center justify-end pb-1 relative" style={{ backgroundColor: '#B45309' }}>
+              <div className="w-1/3 h-16 bg-gray-300 dark:bg-gray-700 rounded-t-md flex flex-col items-center justify-end pb-1 relative">
                 <div className="absolute -top-10 w-full flex justify-center">
                   <div className="relative">
-                    <div className="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-600 overflow-hidden border-2 flex items-center justify-center" style={{ borderColor: '#B45309' }}>
-                      <span className="text-lg font-bold text-white">2</span>
+                    <div className="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-600 overflow-hidden border-2 border-gray-300 dark:border-gray-500 flex items-center justify-center">
+                      <span className="text-lg font-bold text-gray-500 dark:text-gray-300">2</span>
                     </div>
                   </div>
                 </div>
-                <p className="font-medium text-white text-xs">Carlos</p>
-                <p className="text-xs font-bold text-white">8.7</p>
+                <p className="font-medium text-xs">Carlos</p>
+                <p className="text-xs font-bold">8.7</p>
               </div>
 
               {/* Primeiro Lugar */}
@@ -171,16 +171,16 @@ export default function DashboardPage() {
               </div>
 
               {/* Terceiro Lugar */}
-              <div className="w-1/3 h-12 bg-amber-700 rounded-t-md flex flex-col items-center justify-end pb-1 relative">
+              <div className="w-1/3 h-12 bg-gray-300 dark:bg-gray-700 rounded-t-md flex flex-col items-center justify-end pb-1 relative">
                 <div className="absolute -top-8 w-full flex justify-center">
                   <div className="relative">
-                    <div className="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-600 overflow-hidden border-2 border-amber-600 flex items-center justify-center">
-                      <span className="text-sm font-bold text-amber-700 dark:text-amber-500">3</span>
+                    <div className="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-600 overflow-hidden border-2 border-gray-300 dark:border-gray-500 flex items-center justify-center">
+                      <span className="text-sm font-bold text-gray-500 dark:text-gray-300">3</span>
                     </div>
                   </div>
                 </div>
-                <p className="font-medium text-white text-xs">Pedro</p>
-                <p className="text-xs font-bold text-amber-200">8.2</p>
+                <p className="font-medium text-gray-700 dark:text-gray-300 text-xs">Pedro</p>
+                <p className="text-xs font-bold text-gray-600 dark:text-gray-400">8.2</p>
               </div>
             </div>
           </div>
