@@ -114,14 +114,14 @@ export default function DashboardPage() {
         <div className="bg-white dark:bg-dark-bg-secondary rounded-lg shadow-sm p-4 border border-gray-200 dark:border-dark-border">
           <div className="flex items-center justify-between">
               <div>
-              <p className="text-sm font-medium text-gray-600 dark:text-dark-text-tertiary">Avaliação</p>
-              <p className="text-2xl font-bold text-gray-900 dark:text-dark-text-primary">4.8</p>
+              <p className="text-sm font-medium text-gray-600 dark:text-dark-text-tertiary">Ticket Médio</p>
+              <p className="text-2xl font-bold text-gray-900 dark:text-dark-text-primary">R$ 52,08</p>
             </div>
             <div className="p-2 bg-cakto-orange bg-opacity-10 rounded-lg">
-              <FiStar className="h-6 w-6 text-cakto-orange" />
+              <FiDollarSign className="h-6 w-6 text-cakto-orange" />
             </div>
           </div>
-          <p className="text-xs text-green-600 dark:text-cakto-emerald mt-1">+0.2 este mês</p>
+          <p className="text-xs text-green-600 dark:text-cakto-emerald mt-1">+R$ 3,45 este mês</p>
         </div>
       </div>
 
