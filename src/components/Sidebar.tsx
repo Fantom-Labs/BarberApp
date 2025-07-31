@@ -80,21 +80,21 @@ export const Sidebar = memo(function Sidebar() {
         <SidebarLink
           href="/dashboard/agenda"
           icon={<FiCalendar />}
-          active={pathname.startsWith("/dashboard/agenda")}
+          active={pathname === "/dashboard/agenda"}
         >
           Agenda
         </SidebarLink>
         <SidebarLink
           href="/dashboard/functions"
           icon={<FiMenu />}
-          active={pathname.startsWith("/dashboard/functions")}
+          active={pathname === "/dashboard/functions"}
         >
           Funções
         </SidebarLink>
         <SidebarLink
           href="/dashboard/support"
           icon={<FiMessageCircle />}
-          active={pathname.startsWith("/dashboard/support")}
+          active={pathname === "/dashboard/support"}
         >
           Chat
         </SidebarLink>
@@ -102,14 +102,14 @@ export const Sidebar = memo(function Sidebar() {
         <SidebarLink
           href="/dashboard/orders"
           icon={<FiPackage />}
-          active={pathname.startsWith("/dashboard/orders")}
+          active={pathname === "/dashboard/orders"}
         >
           Pedidos
         </SidebarLink>
         <SidebarLink
           href="/dashboard/products"
           icon={<FiShoppingBag />}
-          active={pathname.startsWith("/dashboard/products")}
+          active={pathname === "/dashboard/products"}
         >
           Produtos
         </SidebarLink>
@@ -123,7 +123,7 @@ export const Sidebar = memo(function Sidebar() {
         <SidebarLink
           href="/dashboard/courses"
           icon={<FiVideo />}
-          active={pathname.startsWith("/dashboard/courses")}
+          active={pathname === "/dashboard/courses"}
         >
           Cursos
         </SidebarLink>

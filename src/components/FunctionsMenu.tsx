@@ -152,7 +152,7 @@ export function FunctionsMenu({ onClose, className = "" }: FunctionsMenuProps) {
               key={item.name}
               href={item.href}
               className={`flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
-                pathname === item.href || pathname.startsWith(item.href + "/")
+                pathname === item.href
                   ? "bg-cakto-green text-white"
                   : "text-gray-700 dark:text-dark-text-secondary hover:text-gray-900 dark:hover:text-dark-text-primary hover:bg-gray-100 dark:hover:bg-dark-bg-secondary"
               }`}
